@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.min
 import kotlin.math.sin
 
 /**
@@ -130,7 +131,13 @@ class Outbreak(
             BlockPos.containing(x, 0.0, z)
         )
 
-        val level = random.nextIntBetweenInclusive(cfg.levelMin, cfg.levelMax)
+        // Escalada de nível conforme o outbreak é limpo: a cada clearsPerLevelStep pokémon
+        // derrotados/capturados, os próximos spawns ganham +levelBonusPerStep de nível.
+        val baseLevel = random.nextIntBetweenInclusive(cfg.levelMin, cfg.levelMax)
+        val levelBonus = if (cfg.clearsPerLevelStep > 0) {
+            (cleared / cfg.clearsPerLevelStep) * cfg.levelBonusPerStep
+        } else 0
+        val level = min(baseLevel + levelBonus, Cobblemon.config.maxPokemonLevel)
         val pokemon = species.create(level)
         pokemon.shiny = guaranteedShiny ||
             random.nextFloat() < shinyRolls() / Cobblemon.config.shinyRate

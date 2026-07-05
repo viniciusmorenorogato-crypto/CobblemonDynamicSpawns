@@ -54,6 +54,9 @@ world, announced in chat to every player:
   the outbreak is announced globally with coordinates; you travel there to
   trigger the spawns (Scarlet/Violet style)
 - Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
+- **Escalating levels**: every `clearsPerLevelStep` (10) Pokémon defeated/caught,
+  the next spawns gain `+levelBonusPerStep` (8) levels — the outbreak gets tougher
+  as you thin it out (e.g. 15-40 → ~40-64 after 30 → ~63-88 after 60)
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
 - Ends when the timer runs out (20 min) or when fully cleared
 - **Persistent**: active outbreaks and the schedule are saved per-world
@@ -71,7 +74,10 @@ species, ignoring biome rules — any Pokémon can show up anywhere:
   swapped away (protects wild legendaries from modpacks)
 - **In water/aquatic biomes** (ocean, river, freshwater), the roll only picks
   species that actually live underwater (can breathe underwater)
-- The original spawn's level is kept, preserving area balance
+- **Realistic levels** (`realisticLevels`): the level scales with the species'
+  base stat total — a Magikarp shows up around level 5 while a pseudo-legendary
+  can reach the `rareLevelCap` (55). Set `realisticLevels: false` to instead keep
+  the original spawn's level
 - `excludedNamespaces` lets you exclude species from specific addons
   (e.g. `lumymon`)
 

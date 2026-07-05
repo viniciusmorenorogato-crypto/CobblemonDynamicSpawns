@@ -34,6 +34,12 @@ class DynamicSpawnsConfig {
         var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast", "paradox")
         // Namespaces de espécies fora do sorteio/troca (ex: addons de modpack como "lumymon")
         var excludedNamespaces = mutableListOf<String>()
+        // Nível realista baseado no base stat total (BST): fracos nascem em nível baixo,
+        // fortes/raros escalam até rareLevelCap. Se false, mantém o nível do spawn original.
+        var realisticLevels = true
+        var levelMin = 5
+        // Teto de nível para as espécies mais fortes/raras (BST alto)
+        var rareLevelCap = 55
     }
 
     class Hordes {
@@ -75,6 +81,10 @@ class DynamicSpawnsConfig {
         var guaranteedShinyOnClear = true
         // Labels de espécie que nunca podem virar um Mass Outbreak
         var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast")
+        // Escalada de nível: a cada N pokémon limpos, os próximos spawns ganham
+        // +levelBonusPerStep de nível (ex: começa 15-40, sobe conforme o outbreak progride)
+        var clearsPerLevelStep = 10
+        var levelBonusPerStep = 8
     }
 
     fun save(path: Path) {

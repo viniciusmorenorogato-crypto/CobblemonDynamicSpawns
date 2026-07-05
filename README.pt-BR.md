@@ -52,6 +52,10 @@ aleatório do mapa, anunciado no chat para todos:
   outbreak é anunciado globalmente com coordenadas e você viaja até lá para
   disparar os spawns (estilo Scarlet/Violet)
 - Derrotar/capturar **30** → shiny rolls **x2** | **60** → **x3** (anunciado no chat)
+- **Escalada de nível**: a cada `clearsPerLevelStep` (10) pokémon derrotados/
+  capturados, os próximos spawns ganham `+levelBonusPerStep` (8) de nível — o
+  outbreak fica mais forte conforme você o reduz (ex: 15-40 → ~40-64 aos 30 →
+  ~63-88 aos 60)
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa
 - Termina por tempo (20 min) ou ao ser limpo
 - **Persistente**: os outbreaks ativos e o agendamento são salvos por mundo
@@ -86,7 +90,10 @@ qualquer lugar:
   (protege lendários selvagens de modpacks)
 - **Em água/biomas aquáticos** (oceano, rio, água doce), o sorteio considera
   apenas espécies que vivem na água (respiram debaixo d'água)
-- O nível do spawn original é mantido, preservando o balanceamento da área
+- **Níveis realistas** (`realisticLevels`): o nível escala com o base stat total
+  da espécie — um Magikarp aparece por volta do nível 5 e um pseudo-lendário pode
+  chegar ao `rareLevelCap` (55). Use `realisticLevels: false` para manter o nível
+  do spawn original
 - `excludedNamespaces` permite excluir espécies de addons específicos (ex: `lumymon`)
 
 ### Regras ambientais
