@@ -59,7 +59,9 @@ object DynamicSpawnsCommands {
                                         argument("species", StringArgumentType.word())
                                             .suggests { _, builder ->
                                                 SharedSuggestionProvider.suggest(
-                                                    PokemonSpecies.implemented.map { it.resourceIdentifier.path },
+                                                    PokemonSpecies.implemented
+                                                        .filter { OutbreakManager.isEligible(it) }
+                                                        .map { it.resourceIdentifier.path },
                                                     builder
                                                 )
                                             }
@@ -123,6 +125,10 @@ object DynamicSpawnsCommands {
     private fun startOutbreak(ctx: CommandContext<CommandSourceStack>, species: Species?): Int {
         val server = ctx.source.server
         val cfg = DynamicSpawns.config.outbreaks
+        if (species != null && !OutbreakManager.isEligible(species)) {
+            ctx.source.sendFailure(Component.translatable("dynamicspawns.command.outbreak_excluded", species.name))
+            return 0
+        }
         if (OutbreakManager.activeOutbreaks.size >= cfg.maxSimultaneous) {
             ctx.source.sendFailure(
                 Component.translatable("dynamicspawns.command.outbreak_limit", cfg.maxSimultaneous)

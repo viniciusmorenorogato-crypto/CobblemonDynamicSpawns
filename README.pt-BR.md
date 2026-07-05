@@ -45,6 +45,8 @@ aleatório do mapa, anunciado no chat para todos:
   (`startAfterInGameDays`); os seguintes seguem o intervalo aleatório. Comandos
   manuais ignoram essa regra
 - Espécie única spawnando em massa (orçamento de 80 pokémon, máx. 8 vivos por outbreak)
+- Espécies lendárias, míticas e ultra beasts nunca viram outbreak
+  (`excludedLabels`)
 - Os pokémon só materializam enquanto há um jogador dentro do raio de ativação
   (`activationRadius`), garantindo que nasçam em chunks carregados/ativos — o
   outbreak é anunciado globalmente com coordenadas e você viaja até lá para

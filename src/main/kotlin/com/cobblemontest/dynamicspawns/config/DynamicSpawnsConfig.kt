@@ -73,6 +73,8 @@ class DynamicSpawnsConfig {
         var shinyMilestone1 = 30
         var shinyMilestone2 = 60
         var guaranteedShinyOnClear = true
+        // Labels de espécie que nunca podem virar um Mass Outbreak
+        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast")
     }
 
     fun save(path: Path) {

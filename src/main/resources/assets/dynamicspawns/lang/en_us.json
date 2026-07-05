@@ -12,6 +12,7 @@
   "dynamicspawns.command.horde_failed": "Failed to spawn the horde leader.",
   "dynamicspawns.command.horde_success": "Horde spawned: leader %1$s (level %2$s) + %3$s %4$s.",
   "dynamicspawns.command.outbreak_limit": "Simultaneous outbreak limit reached (%1$s). Use /dynamicspawns outbreak stop or raise maxSimultaneous in the config.",
+  "dynamicspawns.command.outbreak_excluded": "%1$s can't be used for a Mass Outbreak (legendary/mythical/ultra beast).",
   "dynamicspawns.command.too_close": "Too close to an active outbreak — minimum distance: %1$s chunks.",
   "dynamicspawns.command.start_failed": "Could not start the outbreak (no players online or no valid position away from active outbreaks).",
   "dynamicspawns.command.no_outbreak": "No active outbreak right now.",

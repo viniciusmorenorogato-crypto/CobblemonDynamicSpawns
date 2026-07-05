@@ -47,6 +47,8 @@ world, announced in chat to every player:
   (`startAfterInGameDays`); subsequent ones follow the random interval. Admin
   commands bypass this rule
 - A single species mass-spawning (budget of 80 Pokémon, max 8 alive per outbreak)
+- Legendary, mythical and ultra-beast species never become outbreaks
+  (`excludedLabels`)
 - Pokémon only materialize while a player is within the outbreak's activation
   radius (`activationRadius`), so they always spawn in loaded, ticking chunks —
   the outbreak is announced globally with coordinates; you travel there to

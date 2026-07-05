@@ -203,10 +203,17 @@ object OutbreakManager {
     private fun pickSpeciesFor(world: ServerLevel, center: BlockPos): Species? =
         PokemonSpecies.implemented
             .filter { candidate ->
-                active.none { it.species == candidate } &&
+                isEligible(candidate) &&
+                    active.none { it.species == candidate } &&
                     SpawnEnvironment.isSpeciesAllowed(candidate, world, center)
             }
             .randomOrNull()
+
+    /** A espécie pode virar outbreak? (fora lendários/míticos/ultra beasts, configurável) */
+    fun isEligible(species: Species): Boolean {
+        val excluded = DynamicSpawns.config.outbreaks.excludedLabels.toSet()
+        return species.labels.none { it in excluded }
+    }
 
     /** Inicia um outbreak da [species] centrado em [center]. */
     fun start(server: MinecraftServer, world: ServerLevel, center: BlockPos, species: Species): Boolean {
