@@ -21,10 +21,17 @@ originais é alterado, apenas adicionamos entradas novas em
 - **Costa/praia**: Krabby, Wingull (dia), Corphish, Staryu (noite)
 
 ### 2. Hordas
-Quando uma espécie **evoluída** spawna naturalmente (ex: Bibarel), há uma chance
-(configurável, padrão 8%) de ela virar **líder de horda**:
-- Líder ganha bônus de nível (+5) e 3 IVs perfeitos aleatórios
-- 3-5 membros da **pré-evolução** (ex: Bidoofs) spawnam ao redor
+Quando uma **espécie base que pode evoluir** spawna naturalmente (ex: Bidoof), há
+uma chance (configurável, padrão 8%) de ela virar uma **horda**:
+- O Pokémon que nasceu vira um dos membros da horda
+- Um **líder evoluído** (ex: Bibarel) spawna ao lado com bônus de nível (+5) e 3
+  IVs perfeitos aleatórios
+- 3-5 membros base a mais spawnam ao redor
+
+Disparar nos spawns de estágio base (comuns), em vez dos evoluídos (raros), deixa
+as hordas muito mais frequentes — como o gatilho incide sobre a maioria dos
+spawns, uma chance de poucos por cento já produz bastante; ajuste `chance` para
+baixo conforme necessário.
 
 ### 3. Mass Outbreaks (estilo Scarlet/Violet)
 Em intervalos aleatórios (20-45 min), um outbreak global começa em um local
@@ -51,7 +58,7 @@ aleatório do mapa, anunciado no chat para todos:
 | Comando | Efeito |
 |---|---|
 | `/dynamicspawns reload` | Recarrega a config |
-| `/dynamicspawns horde <espécie>` | Força uma horda na sua posição (usar espécie evoluída, ex: `bibarel`) |
+| `/dynamicspawns horde <espécie>` | Força uma horda na sua posição (usar espécie base que evolui, ex: `bidoof`) |
 | `/dynamicspawns outbreak start [espécie]` | Inicia um outbreak (aleatório ou da espécie dada, perto de você) |
 | `/dynamicspawns outbreak stop` | Encerra todos os outbreaks ativos |
 | `/dynamicspawns outbreak info` | Lista os outbreaks ativos com status |

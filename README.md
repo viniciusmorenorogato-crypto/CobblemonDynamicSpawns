@@ -23,10 +23,17 @@ from the original spawns is modified, we only add new entries under
 - **Coasts/beaches**: Krabby, Wingull (day), Corphish, Staryu (night)
 
 ### 2. Hordes
-When an **evolved** species spawns naturally (e.g. Bibarel), there is a
-configurable chance (default 8%) that it becomes a **horde leader**:
-- The leader gets a level bonus (+5) and 3 random perfect IVs
-- 3-5 members of its **pre-evolution** (e.g. Bidoofs) spawn around it
+When a **base species that can evolve** spawns naturally (e.g. Bidoof), there is
+a configurable chance (default 8%) that it turns into a **horde**:
+- The spawned Pokémon becomes one of the horde members
+- An **evolved leader** (e.g. Bibarel) spawns nearby with a level bonus (+5) and
+  3 random perfect IVs
+- 3-5 more base members spawn around it
+
+Triggering on the common base-stage spawns (rather than the rare evolved ones)
+makes hordes far more frequent — with the trigger applied to most natural
+spawns, a chance as low as a few percent already produces plenty; tune `chance`
+down accordingly.
 
 ### 3. Mass Outbreaks (Scarlet/Violet style)
 At random intervals (20-45 min), a global outbreak starts somewhere in the
@@ -65,7 +72,7 @@ species, ignoring biome rules — any Pokémon can show up anywhere:
 | Command | Effect |
 |---|---|
 | `/dynamicspawns reload` | Reloads the config |
-| `/dynamicspawns horde <species>` | Forces a horde at your position (use an evolved species, e.g. `bibarel`) |
+| `/dynamicspawns horde <species>` | Forces a horde at your position (use a base species that evolves, e.g. `bidoof`) |
 | `/dynamicspawns outbreak start [species]` | Starts an outbreak (random, or of the given species near you) |
 | `/dynamicspawns outbreak stop` | Ends all active outbreaks |
 | `/dynamicspawns outbreak info` | Lists active outbreaks with status |

@@ -1,7 +1,6 @@
 package com.cobblemontest.dynamicspawns.command
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemontest.dynamicspawns.DynamicSpawns
@@ -28,6 +27,9 @@ import net.minecraft.network.chat.Component
  */
 object DynamicSpawnsCommands {
 
+    // Nível base usado quando uma horda é forçada por comando (o líder recebe + leaderLevelBonus)
+    private const val HORDE_COMMAND_LEVEL = 15
+
     fun register() {
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
             dispatcher.register(
@@ -40,7 +42,7 @@ object DynamicSpawnsCommands {
                                 .suggests { _, builder ->
                                     SharedSuggestionProvider.suggest(
                                         PokemonSpecies.implemented
-                                            .filter { it.preEvolution != null }
+                                            .filter { it.standardForm.evolutions.isNotEmpty() }
                                             .map { it.resourceIdentifier.path },
                                         builder
                                     )
@@ -93,29 +95,24 @@ object DynamicSpawnsCommands {
 
     private fun forceHorde(ctx: CommandContext<CommandSourceStack>): Int {
         val name = StringArgumentType.getString(ctx, "species")
-        val species = findSpecies(name)
-        if (species == null) {
+        val base = findSpecies(name)
+        if (base == null) {
             ctx.source.sendFailure(Component.translatable("dynamicspawns.command.unknown_species", name))
             return 0
         }
-        if (species.preEvolution == null) {
-            ctx.source.sendFailure(Component.translatable("dynamicspawns.command.no_preevolution", name))
+        val leaderSpecies = HordeSystem.evolvedLeaderFor(base)
+        if (leaderSpecies == null) {
+            ctx.source.sendFailure(Component.translatable("dynamicspawns.command.cannot_evolve", name))
             return 0
         }
         val player = ctx.source.playerOrException
         val world = ctx.source.level
-        val leader = PokemonEntity(world, species.create(20))
-        leader.moveTo(player.x, player.y, player.z, world.random.nextFloat() * 360f, 0f)
-        if (!world.addFreshEntity(leader)) {
-            ctx.source.sendFailure(Component.translatable("dynamicspawns.command.horde_failed"))
-            return 0
-        }
-        val members = HordeSystem.spawnHordeAround(leader, world)
+        val result = HordeSystem.spawnHorde(world, leaderSpecies, base, HORDE_COMMAND_LEVEL, player.x, player.y, player.z)
         ctx.source.sendSuccess(
             {
                 Component.translatable(
                     "dynamicspawns.command.horde_success",
-                    name, leader.pokemon.level, members
+                    leaderSpecies.name, result.leaderLevel, result.members, base.name
                 )
             },
             true
