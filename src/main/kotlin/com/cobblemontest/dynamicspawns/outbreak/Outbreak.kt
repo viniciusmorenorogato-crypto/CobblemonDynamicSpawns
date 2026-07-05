@@ -137,7 +137,8 @@ class Outbreak(
         val levelBonus = if (cfg.clearsPerLevelStep > 0) {
             (cleared / cfg.clearsPerLevelStep) * cfg.levelBonusPerStep
         } else 0
-        val level = min(baseLevel + levelBonus, Cobblemon.config.maxPokemonLevel)
+        val cap = min(cfg.levelCap, Cobblemon.config.maxPokemonLevel)
+        val level = min(baseLevel + levelBonus, cap)
         val pokemon = species.create(level)
         pokemon.shiny = guaranteedShiny ||
             random.nextFloat() < shinyRolls() / Cobblemon.config.shinyRate

@@ -40,6 +40,8 @@ class DynamicSpawnsConfig {
         var levelMin = 5
         // Teto de nível para as espécies mais fortes/raras (BST alto)
         var rareLevelCap = 55
+        // Variação (+/-) aplicada ao nível realista, para não ficar monótono
+        var levelVariance = 5
     }
 
     class Hordes {
@@ -85,6 +87,9 @@ class DynamicSpawnsConfig {
         // +levelBonusPerStep de nível (ex: começa 15-40, sobe conforme o outbreak progride)
         var clearsPerLevelStep = 10
         var levelBonusPerStep = 8
+        // Teto de nível dos spawns do outbreak (mesmo com a escalada). A variação continua
+        // vindo da faixa levelMin-levelMax, que se desloca com a escalada.
+        var levelCap = 80
     }
 
     fun save(path: Path) {

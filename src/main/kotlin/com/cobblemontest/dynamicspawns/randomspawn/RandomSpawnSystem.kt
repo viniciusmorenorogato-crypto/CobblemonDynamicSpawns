@@ -99,7 +99,8 @@ object RandomSpawnSystem {
         val bst = species.baseStats.values.sum()
         val fraction = ((bst - BST_MIN) / (BST_MAX - BST_MIN)).coerceIn(0.0, 1.0)
         val base = cfg.levelMin + fraction * (cfg.rareLevelCap - cfg.levelMin)
-        val jitter = world.random.nextIntBetweenInclusive(-3, 3)
+        val variance = cfg.levelVariance
+        val jitter = if (variance > 0) world.random.nextIntBetweenInclusive(-variance, variance) else 0
         return (Math.round(base).toInt() + jitter).coerceIn(1, cfg.rareLevelCap)
     }
 
