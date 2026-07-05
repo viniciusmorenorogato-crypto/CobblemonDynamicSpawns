@@ -34,8 +34,9 @@ aleatório do mapa, anunciado no chat para todos:
 - **Espaçamento territorial**: outbreaks ativos ficam a pelo menos **16 chunks**
   (256 blocos) uns dos outros (`minChunkDistanceBetweenOutbreaks`) — nunca se
   sobrepõem; se não houver posição válida, o início é adiado para o próximo intervalo
-- Outbreaks naturais só começam **após o primeiro dia in-game**
-  (`startAfterInGameDays`) — comandos manuais ignoram essa regra
+- O **primeiro outbreak é garantido** assim que o primeiro dia in-game termina
+  (`startAfterInGameDays`); os seguintes seguem o intervalo aleatório. Comandos
+  manuais ignoram essa regra
 - Espécie única spawnando em massa (orçamento de 80 pokémon, máx. 8 vivos por outbreak)
 - Derrotar/capturar **30** → shiny rolls **x2** | **60** → **x3** (anunciado no chat)
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa

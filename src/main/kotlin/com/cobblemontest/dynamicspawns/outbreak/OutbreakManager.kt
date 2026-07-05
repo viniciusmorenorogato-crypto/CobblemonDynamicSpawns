@@ -33,6 +33,9 @@ object OutbreakManager {
     val activeOutbreaks: List<Outbreak> get() = active
 
     private var nextStartAtTick = -1
+    // Assim que o primeiro dia in-game termina, o primeiro outbreak é obrigatório
+    // (dispara na hora). Só depois desse os intervalos aleatórios entram em ação.
+    private var firstOutbreakDone = false
     private var currentServer: MinecraftServer? = null
 
     fun register() {
@@ -40,6 +43,7 @@ object OutbreakManager {
         ServerLifecycleEvents.SERVER_STOPPED.register {
             active.clear()
             nextStartAtTick = -1
+            firstOutbreakDone = false
             currentServer = null
         }
 
@@ -78,7 +82,11 @@ object OutbreakManager {
             nextStartAtTick = -1
             return
         }
-        if (nextStartAtTick < 0) {
+        if (!firstOutbreakDone) {
+            // Virada do primeiro dia: outbreak obrigatório, sem esperar intervalo.
+            // Se falhar (sem jogadores), tenta de novo no próximo tick até nascer.
+            if (startRandom(server)) firstOutbreakDone = true
+        } else if (nextStartAtTick < 0) {
             scheduleNext(server)
         } else if (server.tickCount >= nextStartAtTick) {
             startRandom(server)

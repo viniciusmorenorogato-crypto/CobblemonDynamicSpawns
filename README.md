@@ -36,8 +36,9 @@ world, announced in chat to every player:
 - **Territorial spacing**: active outbreaks stay at least **16 chunks**
   (256 blocks) apart (`minChunkDistanceBetweenOutbreaks`) — they never overlap;
   if no valid position exists, the start is postponed to the next interval
-- Natural outbreaks only begin **after the first in-game day**
-  (`startAfterInGameDays`) — admin commands bypass this rule
+- The **first outbreak is guaranteed** the moment the first in-game day ends
+  (`startAfterInGameDays`); subsequent ones follow the random interval. Admin
+  commands bypass this rule
 - A single species mass-spawning (budget of 80 Pokémon, max 8 alive per outbreak)
 - Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
