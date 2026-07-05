@@ -10,6 +10,20 @@ class DynamicSpawnsConfig {
     var hordes = Hordes()
     var outbreaks = Outbreaks()
     var randomSpawns = RandomSpawns()
+    var environment = Environment()
+
+    /** Regras de adequação ambiental aplicadas aos spawns dinâmicos (aleatórios e outbreaks). */
+    class Environment {
+        // Dimensões onde os spawns dinâmicos são totalmente desligados (ex: The End sem aleatoriedade)
+        var disabledDimensions = mutableListOf("minecraft:the_end")
+        // Tipos elementais proibidos por dimensão (ex: nada de grama/água/gelo/inseto no Nether)
+        var dimensionBannedTypes: MutableMap<String, MutableList<String>> = mutableMapOf(
+            "minecraft:the_nether" to mutableListOf("grass", "water", "ice", "bug")
+        )
+        // Respeitar adequação de terreno: espécie aquática (que evita terra) só em água, e
+        // espécie que evita água não fica submersa. Evita ex: Relicanth em cima de uma árvore.
+        var enforceTerrain = true
+    }
 
     class RandomSpawns {
         var enabled = true

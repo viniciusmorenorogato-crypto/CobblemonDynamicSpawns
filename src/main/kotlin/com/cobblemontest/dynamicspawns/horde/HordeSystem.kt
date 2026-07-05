@@ -10,6 +10,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.IVs
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemontest.dynamicspawns.DynamicSpawns
+import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import kotlin.math.PI
@@ -43,6 +44,9 @@ object HordeSystem {
         val entity = event.entity as? PokemonEntity ?: return
         // A espécie que nasceu precisa poder evoluir (para termos um líder evoluído).
         val leaderSpecies = evolvedLeaderFor(entity.pokemon.species) ?: return
+        // Hordas usam posicionamento em chão sólido; pular espécies aquáticas (ex: Magikarp)
+        // para não colocar cardume em terra.
+        if (SpawnEnvironment.isAquaticOnly(entity.pokemon.species)) return
         val world = event.spawnablePosition.world
         if (world.random.nextDouble() >= cfg.chance) return
 

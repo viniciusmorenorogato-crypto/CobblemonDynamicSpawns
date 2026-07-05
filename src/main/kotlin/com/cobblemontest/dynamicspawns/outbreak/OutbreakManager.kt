@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemontest.dynamicspawns.DynamicSpawns
+import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.ChatFormatting
@@ -129,19 +130,11 @@ object OutbreakManager {
         }
         val cfg = DynamicSpawns.config.outbreaks
 
-        // Evita duas espécies iguais em outbreaks simultâneos
-        val species = forcedSpecies
-            ?: PokemonSpecies.implemented
-                .filter { candidate -> active.none { it.species == candidate } }
-                .randomOrNull()
-        if (species == null) {
-            scheduleNext(server)
-            return false
-        }
-
         repeat(POSITION_ATTEMPTS) {
             val player = players.random()
             val world = player.serverLevel()
+            // Pula dimensões desligadas (ex: The End não tem outbreak aleatório)
+            if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return@repeat
             val random = world.random
 
             val angle = random.nextDouble() * 2 * PI
@@ -153,19 +146,34 @@ object OutbreakManager {
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 BlockPos.containing(x, 0.0, z)
             )
-            if (isFarEnoughFromActive(world, center)) {
+            if (!isFarEnoughFromActive(world, center)) return@repeat
+
+            // Escolhe uma espécie adequada ao local (tipo permitido na dimensão + terreno):
+            // evita ex. outbreak de tipo grama no Nether ou de peixe em superfície seca.
+            val species = forcedSpecies ?: pickSpeciesFor(world, center)
+            if (species != null) {
                 return start(server, world, center, species)
             }
         }
-        // Não achou posição válida (mapa saturado de outbreaks): tenta no próximo intervalo
+        // Nenhuma posição/espécie válida: tenta no próximo intervalo
         scheduleNext(server)
         return false
     }
+
+    /** Espécie adequada ao local, evitando repetir espécies de outbreaks ativos. */
+    private fun pickSpeciesFor(world: ServerLevel, center: BlockPos): Species? =
+        PokemonSpecies.implemented
+            .filter { candidate ->
+                active.none { it.species == candidate } &&
+                    SpawnEnvironment.isSpeciesAllowed(candidate, world, center)
+            }
+            .randomOrNull()
 
     /** Inicia um outbreak da [species] centrado em [center]. */
     fun start(server: MinecraftServer, world: ServerLevel, center: BlockPos, species: Species): Boolean {
         val cfg = DynamicSpawns.config.outbreaks
         if (active.size >= cfg.maxSimultaneous) return false
+        if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return false
         if (!isFarEnoughFromActive(world, center)) return false
         active += Outbreak(species, world.dimension(), center, server.tickCount)
         broadcast(

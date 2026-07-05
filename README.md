@@ -67,6 +67,19 @@ species, ignoring biome rules — any Pokémon can show up anywhere:
 - `excludedNamespaces` lets you exclude species from specific addons
   (e.g. `lumymon`)
 
+### Environmental rules
+Both the random spawns and the outbreaks respect environmental sanity checks
+(config section `environment`), so Pokémon don't appear where they shouldn't:
+- **Disabled dimensions** (`disabledDimensions`, default `minecraft:the_end`):
+  no dynamic randomness there — the End keeps its vanilla Pokémon
+- **Banned types per dimension** (`dimensionBannedTypes`, default: no Grass/
+  Water/Ice/Bug in the Nether): species with a banned type are filtered out for
+  that dimension
+- **Terrain suitability** (`enforceTerrain`): water-dwelling species that avoid
+  land only spawn in water (no more Relicanth on top of a tree), and
+  water-averse species won't be placed submerged. Hordes skip aquatic species
+  entirely since their members are placed on solid ground
+
 ## Commands (permission level 2)
 
 | Command | Effect |

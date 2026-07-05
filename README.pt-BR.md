@@ -81,6 +81,20 @@ qualquer lugar:
 - O nível do spawn original é mantido, preservando o balanceamento da área
 - `excludedNamespaces` permite excluir espécies de addons específicos (ex: `lumymon`)
 
+### Regras ambientais
+Tanto os spawns aleatórios quanto os outbreaks respeitam checagens de adequação
+ambiental (seção `environment` da config), para os pokémon não aparecerem onde
+não deveriam:
+- **Dimensões desligadas** (`disabledDimensions`, padrão `minecraft:the_end`):
+  sem aleatoriedade dinâmica lá — o The End mantém seus pokémon originais
+- **Tipos proibidos por dimensão** (`dimensionBannedTypes`, padrão: sem grama/
+  água/gelo/inseto no Nether): espécies com um tipo proibido são filtradas
+  naquela dimensão
+- **Adequação de terreno** (`enforceTerrain`): espécies aquáticas que evitam
+  terra só nascem na água (chega de Relicanth em cima de árvore), e espécies que
+  evitam água não são colocadas submersas. Hordas pulam espécies aquáticas, já
+  que seus membros são posicionados em chão sólido
+
 ## Compatibilidade com Cobbleverse
 
 Verificado contra o **COBBLEVERSE 1.7.31** (Modrinth, abril/2026): MC 1.21.1 +

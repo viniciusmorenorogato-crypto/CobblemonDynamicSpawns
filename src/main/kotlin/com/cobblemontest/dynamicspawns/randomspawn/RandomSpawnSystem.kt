@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemontest.dynamicspawns.DynamicSpawns
+import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.Registries
 import net.minecraft.server.level.ServerLevel
@@ -41,6 +42,8 @@ object RandomSpawnSystem {
         if (event.isCanceled) return
         val entity = event.entity as? PokemonEntity ?: return
         val world = event.spawnablePosition.world
+        // Dimensões desligadas (ex: The End) não recebem aleatoriedade
+        if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return
         if (world.random.nextDouble() >= cfg.chance) return
 
         val excluded = cfg.excludedLabels.toSet()
@@ -59,7 +62,10 @@ object RandomSpawnSystem {
         val pool = PokemonSpecies.implemented.filter { species ->
             species.labels.none { label -> label in excluded } &&
                 species.resourceIdentifier.namespace !in excludedNamespaces &&
-                (!aquatic || species.behaviour.moving.swim.canBreatheUnderwater)
+                (!aquatic || species.behaviour.moving.swim.canBreatheUnderwater) &&
+                // Tipo permitido na dimensão (ex: sem grama no Nether) + terreno adequado
+                // à posição (ex: aquático não nasce em cima de árvore)
+                SpawnEnvironment.isSpeciesAllowed(species, world, pos)
         }
         val replacement = pool.randomOrNull() ?: return
 

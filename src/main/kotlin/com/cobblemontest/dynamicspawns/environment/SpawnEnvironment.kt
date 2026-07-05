@@ -1,0 +1,53 @@
+package com.cobblemontest.dynamicspawns.environment
+
+import com.cobblemon.mod.common.pokemon.Species
+import com.cobblemontest.dynamicspawns.DynamicSpawns
+import net.minecraft.core.BlockPos
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.tags.FluidTags
+
+/**
+ * Regras de adequação ambiental para os spawns dinâmicos (aleatórios e outbreaks):
+ * exclusão de dimensões, tipos elementais proibidos por dimensão, e adequação de
+ * terreno (espécie aquática só na água, etc.). Tudo dirigido por `config.environment`,
+ * usando apenas API pública do Cobblemon.
+ */
+object SpawnEnvironment {
+
+    private fun dimensionId(world: ServerLevel): String =
+        world.dimension().location().toString()
+
+    /** Os spawns dinâmicos estão habilitados nesta dimensão? (ex: falso no The End) */
+    fun dynamicSpawnsAllowed(world: ServerLevel): Boolean =
+        dimensionId(world) !in DynamicSpawns.config.environment.disabledDimensions
+
+    /** Nenhum dos tipos da espécie está na lista de proibidos da dimensão atual? */
+    fun isTypeAllowed(species: Species, world: ServerLevel): Boolean {
+        val banned = DynamicSpawns.config.environment.dimensionBannedTypes[dimensionId(world)]
+            ?: return true
+        if (banned.isEmpty()) return true
+        val bannedLower = banned.map { it.lowercase() }.toSet()
+        return species.types.none { it.showdownId.lowercase() in bannedLower }
+    }
+
+    /** True se uma espécie que só vive na água (evita terra / não anda) precisa de água. */
+    fun isAquaticOnly(species: Species): Boolean {
+        val walk = species.behaviour.moving.walk
+        return walk.avoidsLand || !walk.canWalk
+    }
+
+    /** A espécie combina com o terreno da posição? (aquático só na água; anti-água fora d'água) */
+    fun isTerrainSuitable(species: Species, world: ServerLevel, pos: BlockPos): Boolean {
+        if (!DynamicSpawns.config.environment.enforceTerrain) return true
+        val inWater = world.getBlockState(pos).fluidState.`is`(FluidTags.WATER)
+        // Espécie aquática (evita terra) fora da água → inadequado (ex: Relicanth na árvore)
+        if (isAquaticOnly(species) && !inWater) return false
+        // Espécie que evita água, submersa → inadequado
+        if (species.behaviour.moving.swim.avoidsWater && inWater) return false
+        return true
+    }
+
+    /** Combinação: tipo permitido na dimensão E terreno adequado à posição. */
+    fun isSpeciesAllowed(species: Species, world: ServerLevel, pos: BlockPos): Boolean =
+        isTypeAllowed(species, world) && isTerrainSuitable(species, world, pos)
+}
