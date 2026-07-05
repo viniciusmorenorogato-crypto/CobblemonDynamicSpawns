@@ -27,7 +27,9 @@ class Outbreak(
     val species: Species,
     val dimension: ResourceKey<Level>,
     val center: BlockPos,
-    startTick: Int
+    // Prazo final em tempo de mundo (world.gameTime), que persiste entre save/load — ao
+    // contrário de server.tickCount, que zera a cada abertura do servidor.
+    private val deadlineGameTime: Long
 ) {
     private val cfg get() = DynamicSpawns.config.outbreaks
 
@@ -42,10 +44,30 @@ class Outbreak(
     var finished = false
         private set
 
-    private val endAtTick = startTick + cfg.durationMinutes * 60 * 20
     private var milestone1Announced = false
     private var milestone2Announced = false
     private var finaleSpawned = false
+
+    companion object {
+        /** Cria um outbreak novo com prazo = agora + duração configurada. */
+        fun create(species: Species, dimension: ResourceKey<Level>, center: BlockPos, gameTime: Long): Outbreak {
+            val durationTicks = DynamicSpawns.config.outbreaks.durationMinutes * 60L * 20L
+            return Outbreak(species, dimension, center, gameTime + durationTicks)
+        }
+
+        /** Reconstrói um outbreak a partir do snapshot salvo (espécie/dimensão já resolvidas). */
+        fun fromDto(dto: OutbreakDto, species: Species, dimension: ResourceKey<Level>): Outbreak {
+            val outbreak = Outbreak(species, dimension, BlockPos(dto.cx, dto.cy, dto.cz), dto.deadlineGameTime)
+            outbreak.spawnedTotal = dto.spawnedTotal
+            outbreak.cleared = dto.cleared
+            outbreak.milestone1Announced = dto.milestone1
+            outbreak.milestone2Announced = dto.milestone2
+            outbreak.finaleSpawned = dto.finale
+            dto.pokemonUuids.mapTo(outbreak.pokemonUuids) { UUID.fromString(it) }
+            dto.entityUuids.mapTo(outbreak.entityUuids) { UUID.fromString(it) }
+            return outbreak
+        }
+    }
 
     /** Rolls de shiny atuais (1 base, x2 e x3 nos marcos, como em SV). */
     fun shinyRolls(): Int {
@@ -62,7 +84,7 @@ class Outbreak(
             finished = true
             return
         }
-        if (server.tickCount >= endAtTick) {
+        if (world.gameTime >= deadlineGameTime) {
             OutbreakManager.broadcast(
                 server,
                 Component.translatable("dynamicspawns.outbreak.ended_time", species.translatedName)
@@ -169,4 +191,19 @@ class Outbreak(
             finished = true
         }
     }
+
+    /** Snapshot serializável do estado atual (para persistir no arquivo do mundo). */
+    fun toDto(): OutbreakDto = OutbreakDto(
+        species = species.resourceIdentifier.toString(),
+        dimension = dimension.location().toString(),
+        cx = center.x, cy = center.y, cz = center.z,
+        spawnedTotal = spawnedTotal,
+        cleared = cleared,
+        milestone1 = milestone1Announced,
+        milestone2 = milestone2Announced,
+        finale = finaleSpawned,
+        deadlineGameTime = deadlineGameTime,
+        pokemonUuids = pokemonUuids.map { it.toString() },
+        entityUuids = entityUuids.map { it.toString() }
+    )
 }

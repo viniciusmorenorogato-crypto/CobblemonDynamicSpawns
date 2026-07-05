@@ -52,6 +52,12 @@ aleatório do mapa, anunciado no chat para todos:
 - Derrotar/capturar **30** → shiny rolls **x2** | **60** → **x3** (anunciado no chat)
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa
 - Termina por tempo (20 min) ou ao ser limpo
+- **Persistente**: os outbreaks ativos e o agendamento são salvos por mundo
+  (`dynamicspawns_outbreaks.json`), então continuam de onde pararam ao fechar e
+  reabrir o mundo, em vez de reiniciar. O tempo de vida usa o tempo de mundo
+  (`gameTime`), então corre enquanto o servidor está rodando — independente de o
+  chunk do outbreak estar carregado — e pausa com o mundo fechado. Reabrir o
+  mundo não gera mais um outbreak espúrio
 
 ## Comandos (permissão nível 2)
 
@@ -116,7 +122,6 @@ para atualizar, ajuste a versão no `build.gradle.kts` e no `fabric.mod.json`.
 
 ## Limitações conhecidas (v1.0.0)
 
-- O estado do outbreak não persiste entre reinicializações do servidor
 - Mensagens de chat são traduzidas no cliente (inglês e pt-BR inclusos);
   jogadores que entrarem sem o mod no cliente verão as chaves de tradução cruas
 - Outbreaks sempre escolhem posição na superfície (heightmap)

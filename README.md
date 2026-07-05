@@ -54,6 +54,12 @@ world, announced in chat to every player:
 - Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
 - Ends when the timer runs out (20 min) or when fully cleared
+- **Persistent**: active outbreaks and the schedule are saved per-world
+  (`dynamicspawns_outbreaks.json`), so they survive closing and reopening the
+  world instead of restarting. The lifetime uses world time (`gameTime`), so it
+  counts down while the server runs — regardless of whether the outbreak's chunk
+  is loaded — and pauses while the world is closed. Reopening a world no longer
+  spawns a spurious outbreak
 
 ### 4. Random spawns
 **10% of natural spawns** (configurable) are swapped for a completely random
@@ -126,7 +132,6 @@ This minimizes breakage across future updates. The declared dependency accepts
 
 ## Known limitations (v1.0.0)
 
-- Outbreak state does not persist across server restarts
 - Chat messages are translated client-side (English and Brazilian Portuguese
   included); players joining without the mod on their client will see raw
   translation keys in chat

@@ -27,26 +27,28 @@ import kotlin.math.sin
 object OutbreakManager {
 
     private const val POSITION_ATTEMPTS = 10
+    private const val SAVE_INTERVAL_TICKS = 600 // save periódico (30s) para segurança contra crash
 
     private val active = mutableListOf<Outbreak>()
 
     /** Outbreaks ativos no momento (somente leitura). */
     val activeOutbreaks: List<Outbreak> get() = active
 
-    private var nextStartAtTick = -1
+    // Prazo do próximo outbreak em world.gameTime (persiste entre save/load); -1 = não agendado
+    private var nextStartAtGameTime = -1L
     // Assim que o primeiro dia in-game termina, o primeiro outbreak é obrigatório
     // (dispara na hora). Só depois desse os intervalos aleatórios entram em ação.
     private var firstOutbreakDone = false
+    private var dirty = false
     private var currentServer: MinecraftServer? = null
 
     fun register() {
         ServerTickEvents.END_SERVER_TICK.register(::onTick)
-        ServerLifecycleEvents.SERVER_STOPPED.register {
-            active.clear()
-            nextStartAtTick = -1
-            firstOutbreakDone = false
-            currentServer = null
-        }
+        // Carrega o estado salvo do mundo ao abrir; salva ao fechar. Assim os outbreaks
+        // continuam de onde pararam e NÃO nasce um outbreak espúrio a cada reabertura.
+        ServerLifecycleEvents.SERVER_STARTED.register { server -> loadState(server) }
+        ServerLifecycleEvents.SERVER_STOPPING.register { server -> saveState(server) }
+        ServerLifecycleEvents.SERVER_STOPPED.register { resetInMemory() }
 
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL) { event ->
             notifyCleared(event.player.server, event.pokemon.uuid, byCapture = true)
@@ -64,6 +66,33 @@ object OutbreakManager {
     private fun notifyCleared(server: MinecraftServer, pokemonUuid: java.util.UUID, byCapture: Boolean) {
         // Cada pokémon pertence a no máximo um outbreak; remove() interno deduplica
         active.forEach { it.onPokemonCleared(server, pokemonUuid, byCapture) }
+        dirty = true
+    }
+
+    private fun resetInMemory() {
+        active.clear()
+        nextStartAtGameTime = -1L
+        firstOutbreakDone = false
+        dirty = false
+        currentServer = null
+    }
+
+    private fun buildState() = OutbreakStateDto(firstOutbreakDone, nextStartAtGameTime, active.map { it.toDto() })
+
+    private fun saveState(server: MinecraftServer) {
+        OutbreakPersistence.save(server, buildState())
+        dirty = false
+    }
+
+    private fun loadState(server: MinecraftServer) {
+        resetInMemory()
+        val state = OutbreakPersistence.load(server)
+        firstOutbreakDone = state.firstOutbreakDone
+        nextStartAtGameTime = state.nextStartAtGameTime
+        state.outbreaks.forEach { dto -> OutbreakPersistence.restore(server, dto)?.let { active += it } }
+        if (active.isNotEmpty()) {
+            DynamicSpawns.LOGGER.info("Restaurados {} outbreak(s) do mundo", active.size)
+        }
     }
 
     private fun onTick(server: MinecraftServer) {
@@ -71,26 +100,35 @@ object OutbreakManager {
         val cfg = DynamicSpawns.config.outbreaks
         if (!cfg.enabled) return
 
+        val activeBefore = active.size
         active.forEach { it.tick(server) }
         active.removeAll { it.finished }
+        if (active.size != activeBefore) dirty = true
 
         // Outbreaks naturais só começam depois do primeiro dia in-game (configurável).
         // Outbreaks manuais (/dynamicspawns outbreak start) não passam por aqui.
-        if (server.overworld().dayTime < cfg.startAfterInGameDays * 24000L) return
-
-        if (active.size >= cfg.maxSimultaneous) {
-            // No limite: quando abrir vaga, um novo intervalo é sorteado do zero
-            nextStartAtTick = -1
-            return
+        if (server.overworld().dayTime >= cfg.startAfterInGameDays * 24000L) {
+            val gameTime = server.overworld().gameTime
+            if (active.size >= cfg.maxSimultaneous) {
+                // No limite: quando abrir vaga, um novo intervalo é sorteado do zero
+                nextStartAtGameTime = -1L
+            } else if (!firstOutbreakDone) {
+                // Virada do primeiro dia: outbreak obrigatório, sem esperar intervalo.
+                // Se falhar (sem jogadores), tenta de novo no próximo tick até nascer.
+                if (startRandom(server)) {
+                    firstOutbreakDone = true
+                    dirty = true
+                }
+            } else if (nextStartAtGameTime < 0) {
+                scheduleNext(server)
+            } else if (gameTime >= nextStartAtGameTime) {
+                startRandom(server)
+            }
         }
-        if (!firstOutbreakDone) {
-            // Virada do primeiro dia: outbreak obrigatório, sem esperar intervalo.
-            // Se falhar (sem jogadores), tenta de novo no próximo tick até nascer.
-            if (startRandom(server)) firstOutbreakDone = true
-        } else if (nextStartAtTick < 0) {
-            scheduleNext(server)
-        } else if (server.tickCount >= nextStartAtTick) {
-            startRandom(server)
+
+        // Save periódico de segurança; o fechamento normal do mundo salva em SERVER_STOPPING.
+        if (dirty && server.tickCount % SAVE_INTERVAL_TICKS == 0) {
+            saveState(server)
         }
     }
 
@@ -113,7 +151,8 @@ object OutbreakManager {
         val minTicks = cfg.minIntervalMinutes * 60 * 20
         val maxTicks = max(minTicks, cfg.maxIntervalMinutes * 60 * 20)
         val delay = minTicks + server.overworld().random.nextInt(maxTicks - minTicks + 1)
-        nextStartAtTick = server.tickCount + delay
+        nextStartAtGameTime = server.overworld().gameTime + delay
+        dirty = true
     }
 
     /**
@@ -175,7 +214,7 @@ object OutbreakManager {
         if (active.size >= cfg.maxSimultaneous) return false
         if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return false
         if (!isFarEnoughFromActive(world, center)) return false
-        active += Outbreak(species, world.dimension(), center, server.tickCount)
+        active += Outbreak.create(species, world.dimension(), center, world.gameTime)
         broadcast(
             server,
             Component.translatable(
@@ -185,6 +224,7 @@ object OutbreakManager {
         )
         // Escalona o próximo início a partir de agora
         scheduleNext(server)
+        dirty = true
         return true
     }
 
