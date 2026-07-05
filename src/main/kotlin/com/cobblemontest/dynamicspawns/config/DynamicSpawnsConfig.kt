@@ -47,23 +47,23 @@ class DynamicSpawnsConfig {
     class Hordes {
         var enabled = true
         // Chance (0..1) de um spawn natural de uma espécie evoluída virar uma horda
-        var chance = 0.08
+        var chance = 0.1
         var minMembers = 3
         var maxMembers = 5
-        var leaderLevelBonus = 5
+        var leaderLevelBonus = 15
         var perfectIvCount = 3
     }
 
     class Outbreaks {
         var enabled = true
         // Quantos outbreaks podem estar ativos ao mesmo tempo no servidor
-        var maxSimultaneous = 3
+        var maxSimultaneous = 6
         // Distância radial mínima entre centros de outbreaks ativos, em chunks (1 chunk = 16 blocos)
         var minChunkDistanceBetweenOutbreaks = 16
         // Outbreaks naturais só começam depois de N dias in-game completos
         var startAfterInGameDays = 1
-        var minIntervalMinutes = 20
-        var maxIntervalMinutes = 45
+        var minIntervalMinutes = 5
+        var maxIntervalMinutes = 20
         var durationMinutes = 20
         // Total de pokémon do outbreak; derrotar/capturar todos "limpa" o outbreak
         var totalPokemon = 80

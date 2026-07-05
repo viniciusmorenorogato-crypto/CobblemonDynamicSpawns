@@ -24,7 +24,7 @@ from the original spawns is modified, we only add new entries under
 
 ### 2. Hordes
 When a **base species that can evolve** spawns naturally (e.g. Bidoof), there is
-a configurable chance (default 8%) that it turns into a **horde**:
+a configurable chance (default 10%) that it turns into a **horde**:
 - The spawned Pokémon becomes one of the horde members
 - An **evolved leader** (e.g. Bibarel) spawns nearby with a level bonus (+5) and
   3 random perfect IVs
@@ -39,7 +39,7 @@ down accordingly.
 At random intervals (measured in in-game day time — so sleeping/advancing days
 brings them, not just real playtime), a global outbreak starts somewhere in the
 world, announced in chat to every player:
-- Up to **3 simultaneous outbreaks** (`maxSimultaneous`), each with a different
+- Up to **6 simultaneous outbreaks** (`maxSimultaneous`), each with a different
   species, with staggered start times
 - **Territorial spacing**: active outbreaks stay at least **16 chunks**
   (256 blocks) apart (`minChunkDistanceBetweenOutbreaks`) — they never overlap;

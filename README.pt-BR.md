@@ -22,7 +22,7 @@ originais é alterado, apenas adicionamos entradas novas em
 
 ### 2. Hordas
 Quando uma **espécie base que pode evoluir** spawna naturalmente (ex: Bidoof), há
-uma chance (configurável, padrão 8%) de ela virar uma **horda**:
+uma chance (configurável, padrão 10%) de ela virar uma **horda**:
 - O Pokémon que nasceu vira um dos membros da horda
 - Um **líder evoluído** (ex: Bibarel) spawna ao lado com bônus de nível (+5) e 3
   IVs perfeitos aleatórios
@@ -37,7 +37,7 @@ baixo conforme necessário.
 Em intervalos aleatórios (medidos no tempo de dia in-game — então dormir/avançar
 os dias os traz, não só o tempo real jogado), um outbreak global começa num local
 aleatório do mapa, anunciado no chat para todos:
-- Até **3 outbreaks simultâneos** (`maxSimultaneous`), cada um de uma espécie
+- Até **6 outbreaks simultâneos** (`maxSimultaneous`), cada um de uma espécie
   diferente, com inícios escalonados pelo intervalo aleatório
 - **Espaçamento territorial**: outbreaks ativos ficam a pelo menos **16 chunks**
   (256 blocos) uns dos outros (`minChunkDistanceBetweenOutbreaks`) — nunca se
