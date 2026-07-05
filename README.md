@@ -36,7 +36,8 @@ spawns, a chance as low as a few percent already produces plenty; tune `chance`
 down accordingly.
 
 ### 3. Mass Outbreaks (Scarlet/Violet style)
-At random intervals (20-45 min), a global outbreak starts somewhere in the
+At random intervals (measured in in-game day time — so sleeping/advancing days
+brings them, not just real playtime), a global outbreak starts somewhere in the
 world, announced in chat to every player:
 - Up to **3 simultaneous outbreaks** (`maxSimultaneous`), each with a different
   species, with staggered start times

@@ -30,7 +30,7 @@ data class OutbreakDto(
 /** Estado completo do gerenciador de outbreaks salvo por mundo. */
 data class OutbreakStateDto(
     val firstOutbreakDone: Boolean = false,
-    val nextStartAtGameTime: Long = -1L,
+    val nextStartAtDayTime: Long = -1L,
     val outbreaks: List<OutbreakDto> = emptyList()
 )
 

@@ -34,7 +34,8 @@ spawns, uma chance de poucos por cento já produz bastante; ajuste `chance` para
 baixo conforme necessário.
 
 ### 3. Mass Outbreaks (estilo Scarlet/Violet)
-Em intervalos aleatórios (20-45 min), um outbreak global começa em um local
+Em intervalos aleatórios (medidos no tempo de dia in-game — então dormir/avançar
+os dias os traz, não só o tempo real jogado), um outbreak global começa num local
 aleatório do mapa, anunciado no chat para todos:
 - Até **3 outbreaks simultâneos** (`maxSimultaneous`), cada um de uma espécie
   diferente, com inícios escalonados pelo intervalo aleatório

@@ -34,8 +34,8 @@ object OutbreakManager {
     /** Outbreaks ativos no momento (somente leitura). */
     val activeOutbreaks: List<Outbreak> get() = active
 
-    // Prazo do próximo outbreak em world.gameTime (persiste entre save/load); -1 = não agendado
-    private var nextStartAtGameTime = -1L
+    // Prazo do próximo outbreak em world.dayTime (avança ao dormir; persiste entre save/load); -1 = não agendado
+    private var nextStartAtDayTime = -1L
     // Assim que o primeiro dia in-game termina, o primeiro outbreak é obrigatório
     // (dispara na hora). Só depois desse os intervalos aleatórios entram em ação.
     private var firstOutbreakDone = false
@@ -71,13 +71,13 @@ object OutbreakManager {
 
     private fun resetInMemory() {
         active.clear()
-        nextStartAtGameTime = -1L
+        nextStartAtDayTime = -1L
         firstOutbreakDone = false
         dirty = false
         currentServer = null
     }
 
-    private fun buildState() = OutbreakStateDto(firstOutbreakDone, nextStartAtGameTime, active.map { it.toDto() })
+    private fun buildState() = OutbreakStateDto(firstOutbreakDone, nextStartAtDayTime, active.map { it.toDto() })
 
     private fun saveState(server: MinecraftServer) {
         OutbreakPersistence.save(server, buildState())
@@ -88,7 +88,7 @@ object OutbreakManager {
         resetInMemory()
         val state = OutbreakPersistence.load(server)
         firstOutbreakDone = state.firstOutbreakDone
-        nextStartAtGameTime = state.nextStartAtGameTime
+        nextStartAtDayTime = state.nextStartAtDayTime
         state.outbreaks.forEach { dto -> OutbreakPersistence.restore(server, dto)?.let { active += it } }
         if (active.isNotEmpty()) {
             DynamicSpawns.LOGGER.info("Restaurados {} outbreak(s) do mundo", active.size)
@@ -105,13 +105,17 @@ object OutbreakManager {
         active.removeAll { it.finished }
         if (active.size != activeBefore) dirty = true
 
+        // Usamos dayTime (ciclo dia/noite) e NÃO gameTime para o intervalo: dayTime avança
+        // ao dormir/pular dias, então os outbreaks continuam nascendo conforme o tempo passa,
+        // mesmo que o jogador não gaste minutos reais acordado.
+        val dayTime = server.overworld().dayTime
         // Outbreaks naturais só começam depois do primeiro dia in-game (configurável).
         // Outbreaks manuais (/dynamicspawns outbreak start) não passam por aqui.
-        if (server.overworld().dayTime >= cfg.startAfterInGameDays * 24000L) {
-            val gameTime = server.overworld().gameTime
+        if (dayTime >= cfg.startAfterInGameDays * 24000L) {
+            val maxDelayTicks = cfg.maxIntervalMinutes * 60L * 20L
             if (active.size >= cfg.maxSimultaneous) {
                 // No limite: quando abrir vaga, um novo intervalo é sorteado do zero
-                nextStartAtGameTime = -1L
+                nextStartAtDayTime = -1L
             } else if (!firstOutbreakDone) {
                 // Virada do primeiro dia: outbreak obrigatório, sem esperar intervalo.
                 // Se falhar (sem jogadores), tenta de novo no próximo tick até nascer.
@@ -119,9 +123,10 @@ object OutbreakManager {
                     firstOutbreakDone = true
                     dirty = true
                 }
-            } else if (nextStartAtGameTime < 0) {
+            } else if (nextStartAtDayTime < 0 || nextStartAtDayTime - dayTime > maxDelayTicks) {
+                // Não agendado, ou dayTime foi movido para trás (/time set): reagenda de agora.
                 scheduleNext(server)
-            } else if (gameTime >= nextStartAtGameTime) {
+            } else if (dayTime >= nextStartAtDayTime) {
                 startRandom(server)
             }
         }
@@ -151,7 +156,8 @@ object OutbreakManager {
         val minTicks = cfg.minIntervalMinutes * 60 * 20
         val maxTicks = max(minTicks, cfg.maxIntervalMinutes * 60 * 20)
         val delay = minTicks + server.overworld().random.nextInt(maxTicks - minTicks + 1)
-        nextStartAtGameTime = server.overworld().gameTime + delay
+        // Agendado em dayTime (avança ao dormir/pular dias), não em gameTime.
+        nextStartAtDayTime = server.overworld().dayTime + delay
         dirty = true
     }
 
