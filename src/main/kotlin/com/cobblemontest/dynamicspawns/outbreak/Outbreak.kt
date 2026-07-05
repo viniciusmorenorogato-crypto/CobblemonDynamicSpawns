@@ -71,9 +71,26 @@ class Outbreak(
             finished = true
             return
         }
-        // Uma tentativa de spawn a cada 5 segundos, respeitando orçamento e limite simultâneo
-        if (server.tickCount % 100 == 0 && spawnedTotal < cfg.totalPokemon && countAlive(world) < cfg.maxConcurrent) {
+        // Uma tentativa de spawn a cada 5 segundos, respeitando orçamento e limite simultâneo.
+        // Só materializa pokémon com um jogador dentro do raio de ativação: assim os spawns
+        // caem em chunks que ticam (visíveis/ativos) e não desperdiçamos o orçamento nem
+        // estouramos o maxConcurrent contando entidades descarregadas como mortas.
+        if (server.tickCount % 100 == 0 &&
+            spawnedTotal < cfg.totalPokemon &&
+            hasPlayerNearby(world) &&
+            countAlive(world) < cfg.maxConcurrent
+        ) {
             spawnOne(world)
+        }
+    }
+
+    /** Há algum jogador dentro do raio de ativação (horizontal) do centro? */
+    private fun hasPlayerNearby(world: ServerLevel): Boolean {
+        val rSq = cfg.activationRadius.toDouble() * cfg.activationRadius.toDouble()
+        return world.players().any { player ->
+            val dx = player.x - center.x
+            val dz = player.z - center.z
+            dx * dx + dz * dz < rSq
         }
     }
 

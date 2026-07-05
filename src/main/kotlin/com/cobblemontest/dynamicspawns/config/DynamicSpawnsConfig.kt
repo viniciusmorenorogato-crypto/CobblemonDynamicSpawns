@@ -49,6 +49,10 @@ class DynamicSpawnsConfig {
         var spawnRadius = 32
         var minDistanceFromPlayer = 96
         var maxDistanceFromPlayer = 288
+        // Raio (blocos) em volta do centro dentro do qual precisa haver um jogador para
+        // que o outbreak materialize pokémon. Mantenha <= simulation distance * 16 para
+        // garantir que os spawns fiquem em chunks que ticam (visíveis e ativos).
+        var activationRadius = 80
         var levelMin = 15
         var levelMax = 40
         // Marcos estilo SV: rolls de shiny x2 e x3

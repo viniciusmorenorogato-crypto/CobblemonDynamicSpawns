@@ -40,6 +40,10 @@ world, announced in chat to every player:
   (`startAfterInGameDays`); subsequent ones follow the random interval. Admin
   commands bypass this rule
 - A single species mass-spawning (budget of 80 Pokémon, max 8 alive per outbreak)
+- Pokémon only materialize while a player is within the outbreak's activation
+  radius (`activationRadius`), so they always spawn in loaded, ticking chunks —
+  the outbreak is announced globally with coordinates; you travel there to
+  trigger the spawns (Scarlet/Violet style)
 - Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
 - Ends when the timer runs out (20 min) or when fully cleared
