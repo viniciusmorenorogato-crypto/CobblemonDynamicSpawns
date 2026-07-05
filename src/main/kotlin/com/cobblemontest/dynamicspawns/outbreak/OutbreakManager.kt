@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.tags.FluidTags
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
 import kotlin.math.cos
@@ -206,14 +207,19 @@ object OutbreakManager {
     }
 
     /** Espécie adequada ao local, evitando repetir espécies de outbreaks ativos. */
-    private fun pickSpeciesFor(world: ServerLevel, center: BlockPos): Species? =
-        PokemonSpecies.implemented
+    private fun pickSpeciesFor(world: ServerLevel, center: BlockPos): Species? {
+        // Centro sobre água ou terra? Escolhe espécie do tipo certo para o local, para o
+        // outbreak inteiro combinar (peixe no oceano, terrestre em terra firme).
+        val centerOverWater = world.getBlockState(center.below()).fluidState.`is`(FluidTags.WATER)
+        return PokemonSpecies.implemented
             .filter { candidate ->
                 isEligible(candidate) &&
                     active.none { it.species == candidate } &&
-                    SpawnEnvironment.isSpeciesAllowed(candidate, world, center)
+                    SpawnEnvironment.isSpeciesAllowed(candidate, world, center) &&
+                    SpawnEnvironment.isWaterDweller(candidate) == centerOverWater
             }
             .randomOrNull()
+    }
 
     /** A espécie pode virar outbreak? (fora lendários/míticos/ultra beasts, configurável) */
     fun isEligible(species: Species): Boolean {
@@ -227,7 +233,7 @@ object OutbreakManager {
         if (active.size >= cfg.maxSimultaneous) return false
         if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return false
         if (!isFarEnoughFromActive(world, center)) return false
-        active += Outbreak.create(species, world.dimension(), center, world.gameTime)
+        active += Outbreak.create(species, world.dimension(), center, world.dayTime)
         broadcast(
             server,
             Component.translatable(

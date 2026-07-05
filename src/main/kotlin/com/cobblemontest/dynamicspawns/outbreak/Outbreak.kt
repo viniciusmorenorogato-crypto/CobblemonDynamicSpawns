@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemontest.dynamicspawns.DynamicSpawns
+import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import java.util.UUID
 import net.minecraft.ChatFormatting
 import net.minecraft.core.BlockPos
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceKey
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.tags.FluidTags
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
@@ -28,9 +30,9 @@ class Outbreak(
     val species: Species,
     val dimension: ResourceKey<Level>,
     val center: BlockPos,
-    // Prazo final em tempo de mundo (world.gameTime), que persiste entre save/load — ao
-    // contrário de server.tickCount, que zera a cada abertura do servidor.
-    private val deadlineGameTime: Long
+    // Prazo final em dayTime (ciclo dia/noite): persiste entre save/load E avança ao dormir,
+    // então avançar o tempo encerra o outbreak (assim como faz nascer os próximos).
+    private val deadlineDayTime: Long
 ) {
     private val cfg get() = DynamicSpawns.config.outbreaks
 
@@ -50,15 +52,15 @@ class Outbreak(
     private var finaleSpawned = false
 
     companion object {
-        /** Cria um outbreak novo com prazo = agora + duração configurada. */
-        fun create(species: Species, dimension: ResourceKey<Level>, center: BlockPos, gameTime: Long): Outbreak {
+        /** Cria um outbreak novo com prazo = dayTime atual + duração configurada. */
+        fun create(species: Species, dimension: ResourceKey<Level>, center: BlockPos, dayTime: Long): Outbreak {
             val durationTicks = DynamicSpawns.config.outbreaks.durationMinutes * 60L * 20L
-            return Outbreak(species, dimension, center, gameTime + durationTicks)
+            return Outbreak(species, dimension, center, dayTime + durationTicks)
         }
 
         /** Reconstrói um outbreak a partir do snapshot salvo (espécie/dimensão já resolvidas). */
         fun fromDto(dto: OutbreakDto, species: Species, dimension: ResourceKey<Level>): Outbreak {
-            val outbreak = Outbreak(species, dimension, BlockPos(dto.cx, dto.cy, dto.cz), dto.deadlineGameTime)
+            val outbreak = Outbreak(species, dimension, BlockPos(dto.cx, dto.cy, dto.cz), dto.deadlineDayTime)
             outbreak.spawnedTotal = dto.spawnedTotal
             outbreak.cleared = dto.cleared
             outbreak.milestone1Announced = dto.milestone1
@@ -85,7 +87,7 @@ class Outbreak(
             finished = true
             return
         }
-        if (world.gameTime >= deadlineGameTime) {
+        if (world.dayTime >= deadlineDayTime) {
             OutbreakManager.broadcast(
                 server,
                 Component.translatable("dynamicspawns.outbreak.ended_time", species.translatedName)
@@ -130,6 +132,11 @@ class Outbreak(
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
             BlockPos.containing(x, 0.0, z)
         )
+
+        // Verificação de terreno por spawn: peixe (aquático) só sobre água, terrestre só
+        // sobre chão. Se a posição não combina com a espécie, pula (tenta outra depois).
+        val overWater = world.getBlockState(surface.below()).fluidState.`is`(FluidTags.WATER)
+        if (SpawnEnvironment.isWaterDweller(species) != overWater) return false
 
         // Escalada de nível conforme o outbreak é limpo: a cada clearsPerLevelStep pokémon
         // derrotados/capturados, os próximos spawns ganham +levelBonusPerStep de nível.
@@ -210,7 +217,7 @@ class Outbreak(
         milestone1 = milestone1Announced,
         milestone2 = milestone2Announced,
         finale = finaleSpawned,
-        deadlineGameTime = deadlineGameTime,
+        deadlineDayTime = deadlineDayTime,
         pokemonUuids = pokemonUuids.map { it.toString() },
         entityUuids = entityUuids.map { it.toString() }
     )

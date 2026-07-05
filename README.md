@@ -54,13 +54,17 @@ world, announced in chat to every player:
   radius (`activationRadius`), so they always spawn in loaded, ticking chunks —
   the outbreak is announced globally with coordinates; you travel there to
   trigger the spawns (Scarlet/Violet style)
+- Terrain-matched: the species is picked to fit the center (water dweller over
+  ocean, land dweller on solid ground), and each individual spawn is re-checked —
+  no fish on dry land or land Pokémon out in the ocean
 - Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
 - **Escalating levels**: every `clearsPerLevelStep` (10) Pokémon defeated/caught,
   the next spawns gain `+levelBonusPerStep` (8) levels — the outbreak gets tougher
   as you thin it out (e.g. 15-40 → ~39-64 after 30 → ~63-80 after 60). Variation
   comes from the level range, capped at `levelCap` (80)
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
-- Ends when the timer runs out (20 min) or when fully cleared
+- Ends when its lifetime runs out (also in-game day time, so advancing/sleeping
+  ends outbreaks too) or when fully cleared
 - **Persistent**: active outbreaks and the schedule are saved per-world
   (`dynamicspawns_outbreaks.json`), so they survive closing and reopening the
   world instead of restarting. The lifetime uses world time (`gameTime`), so it

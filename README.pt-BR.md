@@ -52,13 +52,17 @@ aleatório do mapa, anunciado no chat para todos:
   (`activationRadius`), garantindo que nasçam em chunks carregados/ativos — o
   outbreak é anunciado globalmente com coordenadas e você viaja até lá para
   disparar os spawns (estilo Scarlet/Violet)
+- Terreno combinado: a espécie é escolhida conforme o centro (aquático sobre
+  oceano, terrestre sobre chão), e cada spawn é reverificado — nada de peixe em
+  terra firme ou pokémon terrestre no meio do oceano
 - Derrotar/capturar **30** → shiny rolls **x2** | **60** → **x3** (anunciado no chat)
 - **Escalada de nível**: a cada `clearsPerLevelStep` (10) pokémon derrotados/
   capturados, os próximos spawns ganham `+levelBonusPerStep` (8) de nível — o
   outbreak fica mais forte conforme você o reduz (ex: 15-40 → ~39-64 aos 30 →
   ~63-80 aos 60). A variação vem da faixa de nível, com teto em `levelCap` (80)
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa
-- Termina por tempo (20 min) ou ao ser limpo
+- Termina quando o tempo de vida acaba (também em tempo de dia in-game, então
+  avançar/dormir também encerra os outbreaks) ou ao ser limpo
 - **Persistente**: os outbreaks ativos e o agendamento são salvos por mundo
   (`dynamicspawns_outbreaks.json`), então continuam de onde pararam ao fechar e
   reabrir o mundo, em vez de reiniciar. O tempo de vida usa o tempo de mundo

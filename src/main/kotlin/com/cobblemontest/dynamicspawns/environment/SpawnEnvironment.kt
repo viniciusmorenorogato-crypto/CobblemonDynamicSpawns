@@ -36,6 +36,10 @@ object SpawnEnvironment {
         return walk.avoidsLand || !walk.canWalk
     }
 
+    /** True se a espécie é aquática (vive na água): respira debaixo d'água ou evita terra. */
+    fun isWaterDweller(species: Species): Boolean =
+        species.behaviour.moving.swim.canBreatheUnderwater || isAquaticOnly(species)
+
     /** A espécie combina com o terreno da posição? (aquático só na água; anti-água fora d'água) */
     fun isTerrainSuitable(species: Species, world: ServerLevel, pos: BlockPos): Boolean {
         if (!DynamicSpawns.config.environment.enforceTerrain) return true

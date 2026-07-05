@@ -22,7 +22,7 @@ data class OutbreakDto(
     val milestone1: Boolean,
     val milestone2: Boolean,
     val finale: Boolean,
-    val deadlineGameTime: Long,
+    val deadlineDayTime: Long,
     val pokemonUuids: List<String>,
     val entityUuids: List<String>
 )
@@ -37,7 +37,7 @@ data class OutbreakStateDto(
 /**
  * Persistência dos Mass Outbreaks no arquivo `dynamicspawns_outbreaks.json` dentro da
  * pasta do mundo. Assim os outbreaks continuam de onde pararam ao fechar e reabrir o
- * mundo (e a base de tempo usa world.gameTime, que também persiste).
+ * mundo (e a base de tempo usa world.dayTime, que persiste e avança ao dormir).
  */
 object OutbreakPersistence {
 
