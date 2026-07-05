@@ -1,0 +1,59 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-swinub-snowy",
+            "pokemon": "swinub",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-30",
+            "weight": 9.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_snowy", "#cobblemon:is_freezing"]
+            }
+        },
+        {
+            "id": "dynamicspawns-snorunt-snowy-night",
+            "pokemon": "snorunt",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "10-30",
+            "weight": 6.0,
+            "condition": {
+                "timeRange": "night",
+                "biomes": ["#cobblemon:is_snowy", "#cobblemon:is_freezing"]
+            }
+        },
+        {
+            "id": "dynamicspawns-cubchoo-snowy",
+            "pokemon": "cubchoo",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-30",
+            "weight": 7.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_snowy", "#cobblemon:is_snowy_forest"]
+            }
+        },
+        {
+            "id": "dynamicspawns-snover-snowy-forest",
+            "pokemon": "snover",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "10-32",
+            "weight": 6.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_snowy_forest", "#cobblemon:is_glacial"]
+            }
+        }
+    ]
+}

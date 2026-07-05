@@ -1,0 +1,60 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-sandshrew-desert",
+            "pokemon": "sandshrew",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-30",
+            "weight": 9.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_desert", "#cobblemon:is_sandy"]
+            }
+        },
+        {
+            "id": "dynamicspawns-trapinch-desert",
+            "pokemon": "trapinch",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "10-32",
+            "weight": 6.0,
+            "condition": {
+                "timeRange": "day",
+                "biomes": ["#cobblemon:is_desert", "#cobblemon:is_sandy"]
+            }
+        },
+        {
+            "id": "dynamicspawns-cacnea-desert-night",
+            "pokemon": "cacnea",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-30",
+            "weight": 8.0,
+            "condition": {
+                "timeRange": "night",
+                "biomes": ["#cobblemon:is_desert", "#cobblemon:is_sandy"]
+            }
+        },
+        {
+            "id": "dynamicspawns-sandile-desert",
+            "pokemon": "sandile",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "10-32",
+            "weight": 5.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_desert", "#cobblemon:is_badlands"]
+            }
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-krabby-coast",
+            "pokemon": "krabby",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-28",
+            "weight": 9.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_beach", "#cobblemon:is_coast"]
+            }
+        },
+        {
+            "id": "dynamicspawns-wingull-coast",
+            "pokemon": "wingull",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-28",
+            "weight": 9.0,
+            "condition": {
+                "timeRange": "day",
+                "biomes": ["#cobblemon:is_beach", "#cobblemon:is_coast"]
+            }
+        },
+        {
+            "id": "dynamicspawns-corphish-coast",
+            "pokemon": "corphish",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "8-30",
+            "weight": 6.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_beach", "#cobblemon:is_river"]
+            }
+        },
+        {
+            "id": "dynamicspawns-staryu-coast-night",
+            "pokemon": "staryu",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "8-30",
+            "weight": 6.0,
+            "condition": {
+                "timeRange": "night",
+                "biomes": ["#cobblemon:is_beach", "#cobblemon:is_coast"]
+            }
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "dynamicspawns.outbreak.started": "⚠ MASS OUTBREAK! Um bando de %1$s apareceu perto de X=%2$s, Z=%3$s!",
+  "dynamicspawns.outbreak.milestone1": "✦ O outbreak enfraquece! Chance de shiny x2 para %1$s!",
+  "dynamicspawns.outbreak.milestone2": "✦✦ O outbreak está quase no fim! Chance de shiny x3 para %1$s!",
+  "dynamicspawns.outbreak.finale": "★ Outbreak limpo! Um exemplar especial de %1$s apareceu como recompensa!",
+  "dynamicspawns.outbreak.cleared": "O Mass Outbreak de %1$s foi limpo!",
+  "dynamicspawns.outbreak.ended_time": "O Mass Outbreak de %1$s terminou (o tempo acabou).",
+  "dynamicspawns.outbreak.stopped": "O Mass Outbreak de %1$s foi encerrado.",
+  "dynamicspawns.command.reload": "Config do Dynamic Spawns recarregada.",
+  "dynamicspawns.command.unknown_species": "Espécie desconhecida: %1$s",
+  "dynamicspawns.command.no_preevolution": "%1$s não tem pré-evolução — hordas precisam de uma espécie evoluída (ex: bibarel).",
+  "dynamicspawns.command.horde_failed": "Falha ao spawnar o líder da horda.",
+  "dynamicspawns.command.horde_success": "Horda spawnada: líder %1$s (nível %2$s) + %3$s membros.",
+  "dynamicspawns.command.outbreak_limit": "Limite de outbreaks simultâneos atingido (%1$s). Use /dynamicspawns outbreak stop ou aumente maxSimultaneous na config.",
+  "dynamicspawns.command.too_close": "Muito perto de um outbreak ativo — distância mínima: %1$s chunks.",
+  "dynamicspawns.command.start_failed": "Não foi possível iniciar o outbreak (sem jogadores online ou sem posição válida longe dos outbreaks ativos).",
+  "dynamicspawns.command.no_outbreak": "Nenhum outbreak ativo no momento.",
+  "dynamicspawns.command.info_header": "Outbreaks ativos: %1$s/%2$s",
+  "dynamicspawns.command.info_line": "#%1$s %2$s em X=%3$s, Z=%4$s | spawnados: %5$s, limpos: %6$s, shiny rolls: x%7$s"
+}

@@ -1,0 +1,61 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-ponyta-plains",
+            "pokemon": "ponyta",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-28",
+            "weight": 8.0,
+            "condition": {
+                "timeRange": "day",
+                "biomes": ["#cobblemon:is_plains", "#cobblemon:is_grassland"]
+            }
+        },
+        {
+            "id": "dynamicspawns-doduo-plains",
+            "pokemon": "doduo",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "8-28",
+            "weight": 8.0,
+            "condition": {
+                "timeRange": "day",
+                "biomes": ["#cobblemon:is_plains", "#cobblemon:is_grassland"]
+            }
+        },
+        {
+            "id": "dynamicspawns-growlithe-plains",
+            "pokemon": "growlithe",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "10-30",
+            "weight": 5.0,
+            "condition": {
+                "timeRange": "day",
+                "biomes": ["#cobblemon:is_plains", "#cobblemon:is_grassland"]
+            }
+        },
+        {
+            "id": "dynamicspawns-eevee-plains",
+            "pokemon": "eevee",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "10-25",
+            "weight": 3.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_plains", "#cobblemon:is_grassland", "#cobblemon:is_floral"]
+            }
+        }
+    ]
+}

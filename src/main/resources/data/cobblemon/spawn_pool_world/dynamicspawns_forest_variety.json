@@ -1,0 +1,61 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-hoothoot-forest-night",
+            "pokemon": "hoothoot",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-25",
+            "weight": 9.0,
+            "condition": {
+                "timeRange": "night",
+                "biomes": ["#cobblemon:is_forest"]
+            }
+        },
+        {
+            "id": "dynamicspawns-seedot-forest",
+            "pokemon": "seedot",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-25",
+            "weight": 8.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_forest"]
+            }
+        },
+        {
+            "id": "dynamicspawns-shroomish-forest",
+            "pokemon": "shroomish",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "5-25",
+            "weight": 6.0,
+            "condition": {
+                "minSkyLight": 0,
+                "maxSkyLight": 11,
+                "biomes": ["#cobblemon:is_forest"]
+            }
+        },
+        {
+            "id": "dynamicspawns-pineco-forest",
+            "pokemon": "pineco",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "5-25",
+            "weight": 6.0,
+            "condition": {
+                "biomes": ["#cobblemon:is_forest"]
+            }
+        }
+    ]
+}

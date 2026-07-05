@@ -1,0 +1,119 @@
+# Cobblemon Dynamic Spawns
+
+*Read this in [Português (Brasil)](README.pt-BR.md).*
+
+An addon for **Cobblemon 1.7.3** (Minecraft 1.21.1, Fabric) that makes Pokémon
+spawning far more dynamic: wider biome variety, light-based cave spawns, wild
+hordes led by evolved leaders, SV-style Mass Outbreaks, and a dash of pure
+randomness.
+
+## Features
+
+### 1. Biome + light-based spawn variety (datapack)
+A purely **additive** layer on top of Cobblemon's default spawn pool — nothing
+from the original spawns is modified, we only add new entries under
+`data/cobblemon/spawn_pool_world/dynamicspawns_*.json`:
+
+- **Dark caves** (`light 0-3`, no sky access): Zubat, Gastly, Sableye (rare)
+- **Lit caves** (`light 4+`, no sky access): Geodude, Machop, Aron, Roggenrola
+- **Forests**: Hoothoot (night), Seedot, Shroomish, Pineco
+- **Plains**: Ponyta, Doduo, Growlithe, Eevee (rare)
+- **Deserts**: Sandshrew, Trapinch (day), Cacnea (night), Sandile
+- **Snowy biomes**: Swinub, Snorunt (night), Cubchoo, Snover
+- **Coasts/beaches**: Krabby, Wingull (day), Corphish, Staryu (night)
+
+### 2. Hordes
+When an **evolved** species spawns naturally (e.g. Bibarel), there is a
+configurable chance (default 8%) that it becomes a **horde leader**:
+- The leader gets a level bonus (+5) and 3 random perfect IVs
+- 3-5 members of its **pre-evolution** (e.g. Bidoofs) spawn around it
+
+### 3. Mass Outbreaks (Scarlet/Violet style)
+At random intervals (20-45 min), a global outbreak starts somewhere in the
+world, announced in chat to every player:
+- Up to **3 simultaneous outbreaks** (`maxSimultaneous`), each with a different
+  species, with staggered start times
+- **Territorial spacing**: active outbreaks stay at least **16 chunks**
+  (256 blocks) apart (`minChunkDistanceBetweenOutbreaks`) — they never overlap;
+  if no valid position exists, the start is postponed to the next interval
+- Natural outbreaks only begin **after the first in-game day**
+  (`startAfterInGameDays`) — admin commands bypass this rule
+- A single species mass-spawning (budget of 80 Pokémon, max 8 alive per outbreak)
+- Defeat/catch **30** → shiny rolls **x2** | **60** → **x3** (announced in chat)
+- Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
+- Ends when the timer runs out (20 min) or when fully cleared
+
+### 4. Random spawns
+**10% of natural spawns** (configurable) are swapped for a completely random
+species, ignoring biome rules — any Pokémon can show up anywhere:
+- **Legendaries, mythicals, ultra beasts and paradox forms are excluded from
+  the roll** (`excludedLabels`) — and natural spawns of those species are never
+  swapped away (protects wild legendaries from modpacks)
+- **In water/aquatic biomes** (ocean, river, freshwater), the roll only picks
+  species that actually live underwater (can breathe underwater)
+- The original spawn's level is kept, preserving area balance
+- `excludedNamespaces` lets you exclude species from specific addons
+  (e.g. `lumymon`)
+
+## Commands (permission level 2)
+
+| Command | Effect |
+|---|---|
+| `/dynamicspawns reload` | Reloads the config |
+| `/dynamicspawns horde <species>` | Forces a horde at your position (use an evolved species, e.g. `bibarel`) |
+| `/dynamicspawns outbreak start [species]` | Starts an outbreak (random, or of the given species near you) |
+| `/dynamicspawns outbreak stop` | Ends all active outbreaks |
+| `/dynamicspawns outbreak info` | Lists active outbreaks with status |
+
+## Configuration
+
+Generated at `config/dynamicspawns.json` on first run. Every number (chances,
+sizes, intervals, shiny milestones) is adjustable there;
+`/dynamicspawns reload` applies changes without restarting.
+
+## Cobbleverse compatibility
+
+Verified against **COBBLEVERSE 1.7.31** (Modrinth, April 2026): MC 1.21.1 +
+Fabric 0.18.4 + Cobblemon 1.7.3 + fabric-language-kotlin 1.13.10 — all
+dependencies match this mod. The pack's spawn-related addons (LumyMon,
+LegendaryMonuments, Raid Dens, Mega Showdown) use their own mechanisms
+(structures/altars/raids) that don't go through the BestSpawner, and the label
+protection guarantees wild legendaries are never swapped by the random spawn
+system. The outbreak shiny boost reads Cobblemon's `shinyRate` config at
+runtime, automatically respecting the pack's improved 1:2048 rate.
+
+This was validated by running a full dedicated server with all 135 Cobbleverse
+mods plus this one — clean boot, no conflicts.
+
+## Compatibility & portability
+
+This mod uses **only Cobblemon's public API** (the `ENTITY_SPAWN`,
+`POKEMON_CAPTURED`, `POKEMON_FAINTED` and `BATTLE_FAINTED` events plus the
+data-driven spawn pool format) — **zero mixins** into Cobblemon internals.
+This minimizes breakage across future updates. The declared dependency accepts
+`>=1.7.3 <1.8.0`; to update, bump the version in `build.gradle.kts` and
+`fabric.mod.json`.
+
+**Dependencies:**
+- [Cobblemon](https://modrinth.com/mod/cobblemon) (required)
+- [Fabric API](https://modrinth.com/mod/fabric-api) (required)
+- [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) (required)
+
+## Known limitations (v1.0.0)
+
+- Outbreak state does not persist across server restarts
+- Chat messages are translated client-side (English and Brazilian Portuguese
+  included); players joining without the mod on their client will see raw
+  translation keys in chat
+- Outbreaks always pick surface positions (heightmap)
+
+## Building
+
+```
+./gradlew build      # jar lands in build/libs/
+./gradlew runClient  # test client
+```
+
+## License
+
+[MIT](LICENSE)

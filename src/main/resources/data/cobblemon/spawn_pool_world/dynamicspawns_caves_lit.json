@@ -1,0 +1,72 @@
+{
+    "enabled": true,
+    "neededInstalledMods": ["dynamicspawns"],
+    "spawns": [
+        {
+            "id": "dynamicspawns-geodude-lit-cave",
+            "pokemon": "geodude",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-30",
+            "weight": 14.0,
+            "condition": {
+                "canSeeSky": false,
+                "minLight": 4,
+                "maxLight": 15,
+                "biomes": ["#cobblemon:is_overworld"]
+            }
+        },
+        {
+            "id": "dynamicspawns-machop-lit-cave",
+            "pokemon": "machop",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "8-30",
+            "weight": 7.0,
+            "condition": {
+                "canSeeSky": false,
+                "minLight": 4,
+                "maxLight": 15,
+                "biomes": ["#cobblemon:is_overworld"]
+            }
+        },
+        {
+            "id": "dynamicspawns-aron-lit-cave",
+            "pokemon": "aron",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "8-30",
+            "weight": 6.0,
+            "condition": {
+                "canSeeSky": false,
+                "minLight": 4,
+                "maxLight": 15,
+                "minY": -64,
+                "maxY": 40,
+                "biomes": ["#cobblemon:is_overworld"]
+            }
+        },
+        {
+            "id": "dynamicspawns-roggenrola-lit-cave",
+            "pokemon": "roggenrola",
+            "presets": ["natural"],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "5-28",
+            "weight": 9.0,
+            "condition": {
+                "canSeeSky": false,
+                "minLight": 4,
+                "maxLight": 15,
+                "biomes": ["#cobblemon:is_overworld"]
+            }
+        }
+    ]
+}
