@@ -179,6 +179,7 @@ object DynamicSpawnsCommands {
             { Component.translatable("dynamicspawns.command.info_header", outbreaks.size, cfg.maxSimultaneous) },
             false
         )
+        val dayTime = ctx.source.server.overworld().dayTime
         outbreaks.forEachIndexed { index, outbreak ->
             ctx.source.sendSuccess({
                 Component.translatable(
@@ -189,7 +190,8 @@ object DynamicSpawnsCommands {
                     outbreak.center.z,
                     outbreak.spawnedTotal,
                     outbreak.cleared,
-                    outbreak.shinyRolls()
+                    outbreak.shinyRolls(),
+                    outbreak.remainingMinutes(dayTime)
                 )
             }, false)
         }

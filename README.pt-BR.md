@@ -63,6 +63,13 @@ aleatório do mapa, anunciado no chat para todos:
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa
 - Termina quando o tempo de vida acaba (também em tempo de dia in-game, então
   avançar/dormir também encerra os outbreaks) ou ao ser limpo
+- **Ciência**: ao entrar no mundo, os outbreaks ativos são listados (coordenadas
+  + minutos restantes), e `/dynamicspawns outbreak info` mostra o progresso e o
+  tempo restante de cada um
+- **Waypoint no Xaero's Minimap** (`xaeroWaypoint`, opcional): ao começar, o
+  servidor envia uma mensagem `xaero-waypoint:` para quem tem o Xaero's Minimap
+  clicar em **[Add]** e marcar o local. É um waypoint colorido comum (não um
+  ícone custom); quem não tem Xaero vê o texto, então dá pra desligar
 - **Persistente**: os outbreaks ativos e o agendamento são salvos por mundo
   (`dynamicspawns_outbreaks.json`), então continuam de onde pararam ao fechar e
   reabrir o mundo, em vez de reiniciar. O tempo de vida usa o tempo de mundo

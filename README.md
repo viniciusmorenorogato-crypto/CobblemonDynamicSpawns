@@ -65,6 +65,14 @@ world, announced in chat to every player:
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
 - Ends when its lifetime runs out (also in-game day time, so advancing/sleeping
   ends outbreaks too) or when fully cleared
+- **Awareness**: joining the world lists any active outbreaks (coords + minutes
+  left), and `/dynamicspawns outbreak info` shows each one's progress and time
+  remaining
+- **Xaero's Minimap waypoint** (`xaeroWaypoint`, optional): on start, the server
+  emits an `xaero-waypoint:` chat message so players with Xaero's Minimap get a
+  one-click **[Add]** marker at the outbreak's location. It's a standard colored
+  waypoint (not a custom icon); players without Xaero's just see the text, so it
+  can be turned off
 - **Persistent**: active outbreaks and the schedule are saved per-world
   (`dynamicspawns_outbreaks.json`), so they survive closing and reopening the
   world instead of restarting. The lifetime uses world time (`gameTime`), so it

@@ -17,5 +17,7 @@
   "dynamicspawns.command.start_failed": "Could not start the outbreak (no players online or no valid position away from active outbreaks).",
   "dynamicspawns.command.no_outbreak": "No active outbreak right now.",
   "dynamicspawns.command.info_header": "Active outbreaks: %1$s/%2$s",
-  "dynamicspawns.command.info_line": "#%1$s %2$s at X=%3$s, Z=%4$s | spawned: %5$s, cleared: %6$s, shiny rolls: x%7$s"
+  "dynamicspawns.command.info_line": "#%1$s %2$s at X=%3$s, Z=%4$s | spawned: %5$s, cleared: %6$s, shiny rolls: x%7$s | ~%8$sm left",
+  "dynamicspawns.join.header": "⚠ Active Mass Outbreaks (%1$s):",
+  "dynamicspawns.join.line": "• %1$s — X=%2$s, Z=%3$s (~%4$s min left)"
 }

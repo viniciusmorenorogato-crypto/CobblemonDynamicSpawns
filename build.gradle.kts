@@ -32,6 +32,7 @@ dependencies {
     modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.116.6+1.21.1")
     modImplementation(fabricApi.module("fabric-command-api-v2", "0.116.6+1.21.1"))
     modImplementation(fabricApi.module("fabric-lifecycle-events-v1", "0.116.6+1.21.1"))
+    modImplementation(fabricApi.module("fabric-networking-api-v1", "0.116.6+1.21.1"))
 
     modImplementation("net.fabricmc:fabric-language-kotlin:1.13.6+kotlin.2.2.20")
     modCompileOnly("com.cobblemon:mod:1.7.3+1.21.1") { isTransitive = false }

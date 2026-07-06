@@ -8,12 +8,16 @@ import com.cobblemontest.dynamicspawns.DynamicSpawns
 import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.ChatFormatting
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceKey
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
 import kotlin.math.cos
@@ -50,6 +54,8 @@ object OutbreakManager {
         ServerLifecycleEvents.SERVER_STARTED.register { server -> loadState(server) }
         ServerLifecycleEvents.SERVER_STOPPING.register { server -> saveState(server) }
         ServerLifecycleEvents.SERVER_STOPPED.register { resetInMemory() }
+        // Ao entrar, avisa se há outbreaks ativos (com coordenadas e tempo restante).
+        ServerPlayConnectionEvents.JOIN.register { handler, _, server -> onPlayerJoin(handler.player, server) }
 
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL) { event ->
             notifyCleared(event.player.server, event.pokemon.uuid, byCapture = true)
@@ -241,10 +247,54 @@ object OutbreakManager {
                 species.translatedName, center.x, center.z
             ).withStyle(ChatFormatting.RED, ChatFormatting.BOLD)
         )
+        // Waypoint no Xaero's Minimap: mensagem no formato que o Xaero reconhece como [Add].
+        if (cfg.xaeroWaypoint) {
+            broadcast(server, Component.literal(xaeroWaypointString(species, world.dimension(), center)))
+        }
         // Escalona o próximo início a partir de agora
         scheduleNext(server)
         dirty = true
         return true
+    }
+
+    /**
+     * Constrói a mensagem de waypoint do Xaero's Minimap (10 campos separados por ':'):
+     * nome:símbolo:x:y:z:cor:disabled:yaw:internal-<dim>-waypoints. Clientes com Xaero
+     * mostram um botão [Add]; sem Xaero, aparece como texto.
+     */
+    private fun xaeroWaypointString(species: Species, dimension: ResourceKey<Level>, center: BlockPos): String {
+        val name = "Outbreak-${species.resourceIdentifier.path}"
+        val dim = xaeroDimSegment(dimension)
+        // cor 14 = vermelho na paleta do Xaero; símbolo "!" como marcador de outbreak
+        return "xaero-waypoint:$name:!:${center.x}:${center.y}:${center.z}:14:false:0:internal-$dim-waypoints"
+    }
+
+    private fun xaeroDimSegment(dimension: ResourceKey<Level>): String = when (dimension) {
+        Level.OVERWORLD -> "overworld"
+        Level.NETHER -> "the-nether"
+        Level.END -> "the-end"
+        else -> dimension.location().path.replace("_", "-")
+    }
+
+    /** Ao entrar no mundo, lista os outbreaks ativos (coordenadas + tempo restante). */
+    private fun onPlayerJoin(player: ServerPlayer, server: MinecraftServer) {
+        if (active.isEmpty()) return
+        val dayTime = server.overworld().dayTime
+        player.sendSystemMessage(
+            Component.translatable("dynamicspawns.join.header", active.size)
+                .withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD)
+        )
+        active.forEach { outbreak ->
+            player.sendSystemMessage(
+                Component.translatable(
+                    "dynamicspawns.join.line",
+                    outbreak.species.translatedName,
+                    outbreak.center.x,
+                    outbreak.center.z,
+                    outbreak.remainingMinutes(dayTime)
+                ).withStyle(ChatFormatting.YELLOW)
+            )
+        }
     }
 
     /** Encerra todos os outbreaks ativos. Retorna quantos foram encerrados. */

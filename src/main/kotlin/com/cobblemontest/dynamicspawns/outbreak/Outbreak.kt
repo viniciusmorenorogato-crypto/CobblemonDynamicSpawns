@@ -72,6 +72,13 @@ class Outbreak(
         }
     }
 
+    /** Ticks restantes até o prazo (em dayTime), a partir do dayTime atual. */
+    fun remainingTicks(currentDayTime: Long): Long = (deadlineDayTime - currentDayTime).coerceAtLeast(0)
+
+    /** Minutos restantes (arredondados para cima), para exibição. */
+    fun remainingMinutes(currentDayTime: Long): Int =
+        ((remainingTicks(currentDayTime) + 1199) / 1200).toInt()
+
     /** Rolls de shiny atuais (1 base, x2 e x3 nos marcos, como em SV). */
     fun shinyRolls(): Int {
         var rolls = 1
