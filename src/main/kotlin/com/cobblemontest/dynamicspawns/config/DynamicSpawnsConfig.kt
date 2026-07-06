@@ -90,9 +90,6 @@ class DynamicSpawnsConfig {
         // Teto de nível dos spawns do outbreak (mesmo com a escalada). A variação continua
         // vindo da faixa levelMin-levelMax, que se desloca com a escalada.
         var levelCap = 80
-        // Ao iniciar um outbreak, envia uma mensagem no formato do Xaero's Minimap para
-        // quem tem o mod clicar em [Add] e marcar o local. Quem não tem Xaero vê texto cru.
-        var xaeroWaypoint = true
     }
 
     fun save(path: Path) {

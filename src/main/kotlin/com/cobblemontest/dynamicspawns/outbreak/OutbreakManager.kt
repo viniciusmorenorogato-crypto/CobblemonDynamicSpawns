@@ -12,12 +12,10 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.ChatFormatting
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceKey
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
-import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
 import kotlin.math.cos
@@ -247,33 +245,10 @@ object OutbreakManager {
                 species.translatedName, center.x, center.z
             ).withStyle(ChatFormatting.RED, ChatFormatting.BOLD)
         )
-        // Waypoint no Xaero's Minimap: mensagem no formato que o Xaero reconhece como [Add].
-        if (cfg.xaeroWaypoint) {
-            broadcast(server, Component.literal(xaeroWaypointString(species, world.dimension(), center)))
-        }
         // Escalona o próximo início a partir de agora
         scheduleNext(server)
         dirty = true
         return true
-    }
-
-    /**
-     * Constrói a mensagem de waypoint do Xaero's Minimap (10 campos separados por ':'):
-     * nome:símbolo:x:y:z:cor:disabled:yaw:internal-<dim>-waypoints. Clientes com Xaero
-     * mostram um botão [Add]; sem Xaero, aparece como texto.
-     */
-    private fun xaeroWaypointString(species: Species, dimension: ResourceKey<Level>, center: BlockPos): String {
-        val name = "Outbreak-${species.resourceIdentifier.path}"
-        val dim = xaeroDimSegment(dimension)
-        // cor 14 = vermelho na paleta do Xaero; símbolo "!" como marcador de outbreak
-        return "xaero-waypoint:$name:!:${center.x}:${center.y}:${center.z}:14:false:0:internal-$dim-waypoints"
-    }
-
-    private fun xaeroDimSegment(dimension: ResourceKey<Level>): String = when (dimension) {
-        Level.OVERWORLD -> "overworld"
-        Level.NETHER -> "the-nether"
-        Level.END -> "the-end"
-        else -> dimension.location().path.replace("_", "-")
     }
 
     /** Ao entrar no mundo, lista os outbreaks ativos (coordenadas + tempo restante). */
