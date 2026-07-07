@@ -120,8 +120,9 @@ class DynamicSpawnsConfig {
         var shinyMilestone1 = 30
         var shinyMilestone2 = 60
         var guaranteedShinyOnClear = true
-        // Labels de espécie que nunca podem virar um Mass Outbreak
-        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast")
+        // Labels de espécie que nunca podem virar um Mass Outbreak. "fossil" mantém os
+        // pokémon de fóssil (Omanyte, Aerodactyl...) exclusivos do processo de reviver.
+        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast", "fossil")
         // Escalada de nível: a cada N pokémon limpos, os próximos spawns ganham
         // +levelBonusPerStep de nível (ex: começa 15-40, sobe conforme o outbreak progride)
         var clearsPerLevelStep = 10
