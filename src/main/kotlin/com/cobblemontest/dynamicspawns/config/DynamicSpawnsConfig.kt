@@ -67,8 +67,10 @@ class DynamicSpawnsConfig {
         // Chance (0..1) de um spawn natural ser trocado por uma espécie totalmente aleatória
         var chance = 0.10
         // Espécies com qualquer um desses labels ficam fora do sorteio E têm seus
-        // spawns naturais protegidos contra troca (ex: lendário selvagem de um modpack)
-        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast", "paradox")
+        // spawns naturais protegidos contra troca (ex: lendário selvagem de um modpack).
+        // "fossil" impede que pokémon de fóssil (Omanyte, Aerodactyl...) apareçam aqui —
+        // eles devem vir só do processo de reviver fóssil.
+        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast", "paradox", "fossil")
         // Namespaces de espécies fora do sorteio/troca (ex: addons de modpack como "lumymon")
         var excludedNamespaces = mutableListOf<String>()
         // Nível realista baseado no base stat total (BST): fracos nascem em nível baixo,
