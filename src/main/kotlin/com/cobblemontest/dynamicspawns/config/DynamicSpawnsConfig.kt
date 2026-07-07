@@ -11,6 +11,18 @@ class DynamicSpawnsConfig {
     var outbreaks = Outbreaks()
     var randomSpawns = RandomSpawns()
     var environment = Environment()
+    var flyingSpawns = FlyingSpawns()
+
+    /** Faz pássaros (espécies que voam) nascerem no ar, já voando. */
+    class FlyingSpawns {
+        var enabled = true
+        // Altura (blocos acima da superfície) em que os pássaros nascem
+        var minHeight = 12
+        var maxHeight = 40
+        // Se true, só levanta pássaros "puros" (que não andam, ex: Altaria); se false,
+        // qualquer espécie que voa (canFly) nasce voando.
+        var onlyPureFliers = false
+    }
 
     /** Regras de adequação ambiental aplicadas aos spawns dinâmicos (aleatórios e outbreaks). */
     class Environment {

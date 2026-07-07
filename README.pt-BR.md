@@ -89,7 +89,15 @@ Gerada em `config/dynamicspawns.json` na primeira execução. Todos os números
 (chances, tamanhos, intervalos, marcos de shiny) são ajustáveis lá;
 `/dynamicspawns reload` aplica sem reiniciar.
 
-### 4. Spawns aleatórios
+### 4. Spawns voadores
+Pássaros e outras espécies que voam (`canFly`) nascem **no ar, já voando**, em
+vez de paradas no chão — uma Altaria aparece planando sobre o terreno em vez de
+sentada num campo. A altura acima da superfície é configurável
+(`minHeight`/`maxHeight`, padrão 12-40; aumente para ~120 para nascerem no nível
+das nuvens), e `onlyPureFliers` limita às espécies que não andam. Usa a API
+`canFly`/`setFlying` do Cobblemon — sem mixins.
+
+### 5. Spawns aleatórios
 **10% dos spawns naturais** (configurável) são trocados por uma espécie totalmente
 aleatória, ignorando as regras de bioma — qualquer pokémon pode aparecer em
 qualquer lugar:

@@ -75,7 +75,15 @@ world, announced in chat to every player:
   is loaded — and pauses while the world is closed. Reopening a world no longer
   spawns a spurious outbreak
 
-### 4. Random spawns
+### 4. Flying spawns
+Birds and other flying species (`canFly`) spawn **in the air, already flying**,
+instead of standing on the ground — an Altaria shows up gliding above the
+terrain rather than sitting in a field. Height above the surface is configurable
+(`minHeight`/`maxHeight`, default 12-40; raise it toward ~120 for cloud-level
+spawns), and `onlyPureFliers` can limit it to species that can't walk. Uses
+Cobblemon's `canFly`/`setFlying` API — no mixins.
+
+### 5. Random spawns
 **10% of natural spawns** (configurable) are swapped for a completely random
 species, ignoring biome rules — any Pokémon can show up anywhere:
 - **Legendaries, mythicals, ultra beasts and paradox forms are excluded from
