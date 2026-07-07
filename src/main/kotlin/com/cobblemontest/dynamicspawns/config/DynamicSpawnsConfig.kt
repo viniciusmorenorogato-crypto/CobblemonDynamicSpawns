@@ -12,6 +12,7 @@ class DynamicSpawnsConfig {
     var randomSpawns = RandomSpawns()
     var environment = Environment()
     var flyingSpawns = FlyingSpawns()
+    var skyFliers = SkyFliers()
 
     /** Faz pássaros (espécies que voam) nascerem no ar, já voando. */
     class FlyingSpawns {
@@ -22,6 +23,30 @@ class DynamicSpawnsConfig {
         // Se true, só levanta pássaros "puros" (que não andam, ex: Altaria); se false,
         // qualquer espécie que voa (canFly) nasce voando.
         var onlyPureFliers = false
+    }
+
+    /** Spawner recorrente de pure fliers no céu, perto dos jogadores. */
+    class SkyFliers {
+        var enabled = true
+        // Intervalo (segundos, tempo real de jogo) entre ondas de spawn
+        var minIntervalSeconds = 180
+        var maxIntervalSeconds = 480
+        // Quantos pássaros por onda, por jogador
+        var perPlayerMin = 1
+        var perPlayerMax = 2
+        // Altura acima da superfície e distância horizontal do jogador
+        var minHeight = 40
+        var maxHeight = 90
+        var minDistance = 20
+        var maxDistance = 64
+        var levelMin = 10
+        var levelMax = 35
+        // Exclui espécies muito raras: catch rate mínimo (maior = mais comum; lendários ~3)
+        var minCatchRate = 45
+        var excludedLabels = mutableListOf("legendary", "mythical", "ultra_beast", "paradox")
+        // true = só pure fliers estritos (que não andam, ex: Zubat, Drifloon). false =
+        // qualquer espécie que voa, incluindo pássaros que também andam (ex: Altaria, Pidgeot).
+        var onlyPureFliers = true
     }
 
     /** Regras de adequação ambiental aplicadas aos spawns dinâmicos (aleatórios e outbreaks). */

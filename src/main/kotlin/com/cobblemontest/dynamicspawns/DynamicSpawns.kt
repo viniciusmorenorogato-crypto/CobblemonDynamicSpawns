@@ -3,6 +3,7 @@ package com.cobblemontest.dynamicspawns
 import com.cobblemontest.dynamicspawns.command.DynamicSpawnsCommands
 import com.cobblemontest.dynamicspawns.config.DynamicSpawnsConfig
 import com.cobblemontest.dynamicspawns.flying.FlyingSpawnSystem
+import com.cobblemontest.dynamicspawns.flying.SkyFlierSystem
 import com.cobblemontest.dynamicspawns.horde.HordeSystem
 import com.cobblemontest.dynamicspawns.outbreak.OutbreakManager
 import com.cobblemontest.dynamicspawns.randomspawn.RandomSpawnSystem
@@ -25,6 +26,7 @@ object DynamicSpawns : ModInitializer {
         HordeSystem.register()
         OutbreakManager.register()
         FlyingSpawnSystem.register()
+        SkyFlierSystem.register()
         DynamicSpawnsCommands.register()
         LOGGER.info(
             "Cobblemon Dynamic Spawns inicializado (hordas={}, outbreaks={}, spawns aleatórios={}, voo={})",

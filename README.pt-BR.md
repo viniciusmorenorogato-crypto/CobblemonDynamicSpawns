@@ -97,6 +97,14 @@ sentada num campo. A altura acima da superfície é configurável
 das nuvens), e `onlyPureFliers` limita às espécies que não andam. Usa a API
 `canFly`/`setFlying` do Cobblemon — sem mixins.
 
+Além disso, um **spawner de céu** recorrente (`skyFliers`) spawna periodicamente
+alguns pássaros no alto, perto de cada jogador, sob céu aberto, de um pool
+filtrado — lendários/míticos/ultra beasts e espécies muito raras (catch rate
+baixo) ficam de fora. Por padrão são **pure fliers** estritos (espécies que não
+andam, ex: Zubat, Drifloon); use `onlyPureFliers: false` para incluir também os
+pássaros que andam, como Altaria e Pidgeot. Intervalo, quantidade, altura,
+distância e níveis são configuráveis.
+
 ### 5. Spawns aleatórios
 **10% dos spawns naturais** (configurável) são trocados por uma espécie totalmente
 aleatória, ignorando as regras de bioma — qualquer pokémon pode aparecer em

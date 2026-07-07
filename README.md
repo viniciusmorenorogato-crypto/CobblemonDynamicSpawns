@@ -83,6 +83,14 @@ terrain rather than sitting in a field. Height above the surface is configurable
 spawns), and `onlyPureFliers` can limit it to species that can't walk. Uses
 Cobblemon's `canFly`/`setFlying` API — no mixins.
 
+On top of that, a recurring **sky spawner** (`skyFliers`) periodically spawns a
+few fliers high in the air near each player, under open sky, from a filtered
+pool — legendaries/mythicals/ultra-beasts and very rare species (low catch rate)
+excluded. By default it's strict **pure fliers** (species that can't walk, e.g.
+Zubat, Drifloon); set `onlyPureFliers: false` to also include walking birds like
+Altaria and Pidgeot. Interval, count, height, distance and levels are all
+configurable.
+
 ### 5. Random spawns
 **10% of natural spawns** (configurable) are swapped for a completely random
 species, ignoring biome rules — any Pokémon can show up anywhere:
