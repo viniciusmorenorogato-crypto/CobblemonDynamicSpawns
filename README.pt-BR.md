@@ -106,10 +106,19 @@ pássaros que andam, como Altaria e Pidgeot. Intervalo, quantidade, altura,
 distância e níveis são configuráveis.
 
 ### 5. Spawns aleatórios
-**10% dos spawns naturais** (configurável) são trocados por uma espécie totalmente
-aleatória, ignorando as regras de bioma — qualquer pokémon pode aparecer em
-qualquer lugar:
-- **Lendários, míticos, ultra beasts e paradox ficam fora do sorteio**
+**6% dos spawns naturais** (configurável) são trocados por outra espécie,
+ignorando as regras de bioma — qualquer pokémon pode aparecer em qualquer
+lugar, mas **seguindo a raridade do próprio Cobblemon**:
+- A troca sorteia por **bucket de raridade** (lido em runtime da spawn pool do
+  mundo, respeitando datapacks/modpacks): primeiro o bucket, pelos pesos do mod
+  (`bucketWeights`, padrão **common 60 / uncommon 25 / rare 10 / ultra-rare 5**
+  — curva mais suave que a do Cobblemon, 94.3/5/0.5/0.2, para os raros
+  aparecerem mais), depois uma espécie uniforme dentro do bucket. O bucket da
+  espécie é o mais comum em que ela aparece (ex: Charizard = ultra-rare)
+- Espécies **sem spawn natural** (sem bucket) não podem ser sorteadas
+- Veja [docs/selecao-spawn-aleatorio.pdf](docs/selecao-spawn-aleatorio.pdf) com
+  a listagem completa das espécies e a probabilidade de cada uma
+- **Lendários, míticos, ultra beasts, paradox e fósseis ficam fora do sorteio**
   (`excludedLabels`) — e spawns naturais dessas espécies nunca são trocados
   (protege lendários selvagens de modpacks)
 - **Em água/biomas aquáticos** (oceano, rio, água doce), o sorteio considera

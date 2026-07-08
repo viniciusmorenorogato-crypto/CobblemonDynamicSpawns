@@ -64,8 +64,17 @@ class DynamicSpawnsConfig {
 
     class RandomSpawns {
         var enabled = true
-        // Chance (0..1) de um spawn natural ser trocado por uma espécie totalmente aleatória
-        var chance = 0.10
+        // Chance (0..1) de um spawn natural ser trocado por outra espécie
+        var chance = 0.06
+        // Pesos de sorteio por bucket de raridade do Cobblemon. Curva mais suave que a
+        // spawn pool normal (94.3/5/0.5/0.2): raros aparecem mais, mas a ordem de
+        // raridade é respeitada. Espécies sem spawn natural (sem bucket) ficam de fora.
+        var bucketWeights = mutableMapOf(
+            "common" to 60.0,
+            "uncommon" to 25.0,
+            "rare" to 10.0,
+            "ultra-rare" to 5.0
+        )
         // Espécies com qualquer um desses labels ficam fora do sorteio E têm seus
         // spawns naturais protegidos contra troca (ex: lendário selvagem de um modpack).
         // "fossil" impede que pokémon de fóssil (Omanyte, Aerodactyl...) apareçam aqui —

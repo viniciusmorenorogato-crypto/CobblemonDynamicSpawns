@@ -92,11 +92,21 @@ Altaria and Pidgeot. Interval, count, height, distance and levels are all
 configurable.
 
 ### 5. Random spawns
-**10% of natural spawns** (configurable) are swapped for a completely random
-species, ignoring biome rules — any Pokémon can show up anywhere:
-- **Legendaries, mythicals, ultra beasts and paradox forms are excluded from
-  the roll** (`excludedLabels`) — and natural spawns of those species are never
-  swapped away (protects wild legendaries from modpacks)
+**6% of natural spawns** (configurable) are swapped for another species,
+ignoring biome rules — any Pokémon can show up anywhere, but **following
+Cobblemon's own rarity**:
+- The replacement is drawn by **rarity bucket** (read at runtime from the world
+  spawn pool, so datapacks/modpacks are respected): first a bucket is rolled
+  with the mod's weights (`bucketWeights`, default **common 60 / uncommon 25 /
+  rare 10 / ultra-rare 5** — softer than Cobblemon's 94.3/5/0.5/0.2 so rares
+  show up more), then a uniform species within that bucket. A species' bucket is
+  the most common one it appears in (e.g. Charizard = ultra-rare)
+- Species **without any natural spawn** (no bucket) can't be rolled
+- See [docs/selecao-spawn-aleatorio.pdf](docs/selecao-spawn-aleatorio.pdf) for
+  the full species listing with per-species probabilities
+- **Legendaries, mythicals, ultra beasts, paradox forms and fossils are excluded
+  from the roll** (`excludedLabels`) — and natural spawns of those species are
+  never swapped away (protects wild legendaries from modpacks)
 - **In water/aquatic biomes** (ocean, river, freshwater), the roll only picks
   species that actually live underwater (can breathe underwater)
 - **Realistic levels** (`realisticLevels`): the level scales with the species'
