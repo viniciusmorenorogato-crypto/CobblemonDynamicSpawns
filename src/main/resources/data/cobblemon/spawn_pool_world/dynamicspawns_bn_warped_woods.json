@@ -1,0 +1,93 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-warped_woods-gastly",
+            "pokemon": "gastly",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:old_warped_woods"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-warped_woods-drifloon",
+            "pokemon": "drifloon",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:old_warped_woods"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-warped_woods-elgyem",
+            "pokemon": "elgyem",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:old_warped_woods"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-warped_woods-haunter",
+            "pokemon": "haunter",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-50",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:old_warped_woods"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-warped_woods-beheeyem",
+            "pokemon": "beheeyem",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-50",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:old_warped_woods"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,110 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-ice_starfield-snorunt",
+            "pokemon": "snorunt",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-ice_starfield-bergmite",
+            "pokemon": "bergmite",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-ice_starfield-cryogonal",
+            "pokemon": "cryogonal",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "35-48",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-ice_starfield-avalugg",
+            "pokemon": "avalugg",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-ice_starfield-glalie",
+            "pokemon": "glalie",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-ice_starfield-deoxys",
+            "pokemon": "deoxys",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "60-70",
+            "weight": 0.05,
+            "condition": {
+                "biomes": [
+                    "betterend:ice_starfield"
+                ]
+            }
+        }
+    ]
+}

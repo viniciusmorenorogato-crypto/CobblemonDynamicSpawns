@@ -1,0 +1,122 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-swamplands-grimer",
+            "pokemon": "grimer",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-swamplands-croagunk",
+            "pokemon": "croagunk",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-swamplands-stunky",
+            "pokemon": "stunky",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-swamplands-salandit",
+            "pokemon": "salandit",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-swamplands-muk",
+            "pokemon": "muk",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-swamplands-skuntank",
+            "pokemon": "skuntank",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_swampland",
+                    "betternether:nether_swampland_terraces",
+                    "betternether:old_swampland"
+                ]
+            }
+        }
+    ]
+}

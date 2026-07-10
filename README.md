@@ -116,6 +116,33 @@ Cobblemon's own rarity**:
 - `excludedNamespaces` lets you exclude species from specific addons
   (e.g. `lumymon`)
 
+### BetterEnd / BetterNether integration
+Optional datapack pools (activated only when the mods are installed, via
+`neededInstalledMods`) that give the modded dimensions a themed Pokémon roster:
+
+- **BetterNether** (22 biomes, 51 spawns): crimson/wart woods → Houndour,
+  Salandit, Salazzle; warped woods → Gastly, Elgyem; fungi & upside-down forests
+  → Koffing, Grimer, Weezing; swamplands → Croagunk, Stunky, Muk; magma & deltas
+  → Slugma, Torkoal, Magcargo, plus **Heatran** as an ultra-rare; gravel desert →
+  Geodude, Rhyhorn, Onix; bone reefs & soul plain → Cubone, Litwick, Duskull,
+  Marowak, Spiritomb. No Grass/Water/Ice/Bug types, matching the Nether rules.
+- **BetterEnd** (25 biomes, 71 spawns): chorus forest → Elgyem, Drifblim;
+  shadow forest & umbra valley → Murkrow, Zorua, Absol, Spiritomb; crystal/amber/
+  jade caves → Roggenrola, Carbink, Probopass, Beldum; glowing biomes → Clefairy,
+  Ralts, Chimecho, plus **Cresselia**; dragon graveyards → Deino, Druddigon,
+  Golurk, plus **Regidrago**; wastelands → Baltoy, Claydol, Rhydon; megalake →
+  Chinchou, Frillish, Starmie, Lapras; ice starfield → Snorunt, Cryogonal,
+  Avalugg, plus **Deoxys**; mushroomland & sulphur springs; end caves → Woobat,
+  Noibat, Noivern.
+- Legendaries spawn only in the `ultra-rare` bucket at weight `0.05` (≈180× rarer
+  than a common in the same biome).
+- **Compat fix:** BetterEnd's 25 biomes are added to the `cobblemon:is_end` tag
+  (`required: false`), so Cobblemon's ~42 stock End spawns work there too — they
+  otherwise appear not to, since nothing adds those biomes to `minecraft:is_end`.
+
+Note these are native Cobblemon datapack spawns, independent of the mod's
+`environment` rules (which only govern the random-swap and outbreak systems).
+
 ### Environmental rules
 Both the random spawns and the outbreaks respect environmental sanity checks
 (config section `environment`), so Pokémon don't appear where they shouldn't:

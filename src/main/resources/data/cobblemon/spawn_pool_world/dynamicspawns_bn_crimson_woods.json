@@ -1,0 +1,128 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-crimson_woods-houndour",
+            "pokemon": "houndour",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-crimson_woods-salandit",
+            "pokemon": "salandit",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-crimson_woods-magby",
+            "pokemon": "magby",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-crimson_woods-vulpix",
+            "pokemon": "vulpix",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-crimson_woods-houndoom",
+            "pokemon": "houndoom",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-crimson_woods-salazzle",
+            "pokemon": "salazzle",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:wart_forest",
+                    "betternether:wart_forest_edge",
+                    "betternether:crimson_glowing_woods",
+                    "betternether:crimson_pinewood"
+                ]
+            }
+        }
+    ]
+}

@@ -129,6 +129,35 @@ lugar, mas **seguindo a raridade do próprio Cobblemon**:
   `realisticLevels: false` para manter o nível do spawn original
 - `excludedNamespaces` permite excluir espécies de addons específicos (ex: `lumymon`)
 
+### Integração BetterEnd / BetterNether
+Pools de datapack opcionais (ativadas só se os mods estiverem instalados, via
+`neededInstalledMods`) que dão um elenco temático de Pokémon às dimensões modadas:
+
+- **BetterNether** (22 biomas, 51 spawns): bosques crimson/wart → Houndour,
+  Salandit, Salazzle; warped → Gastly, Elgyem; fungos e floresta invertida →
+  Koffing, Grimer, Weezing; pântanos → Croagunk, Stunky, Muk; magma e deltas →
+  Slugma, Torkoal, Magcargo, mais **Heatran** como ultra-rare; deserto de
+  cascalho → Geodude, Rhyhorn, Onix; recifes de osso e planície das almas →
+  Cubone, Litwick, Duskull, Marowak, Spiritomb. Sem tipos Grama/Água/Gelo/Inseto,
+  respeitando as regras do Nether.
+- **BetterEnd** (25 biomas, 71 spawns): floresta de chorus → Elgyem, Drifblim;
+  floresta sombria e vale de umbra → Murkrow, Zorua, Absol, Spiritomb; cristal/
+  âmbar/cavernas de jade → Roggenrola, Carbink, Probopass, Beldum; biomas
+  luminosos → Clefairy, Ralts, Chimecho, mais **Cresselia**; cemitério dos
+  dragões → Deino, Druddigon, Golurk, mais **Regidrago**; terras poeirentas →
+  Baltoy, Claydol, Rhydon; megalago → Chinchou, Frillish, Starmie, Lapras; campo
+  estelar de gelo → Snorunt, Cryogonal, Avalugg, mais **Deoxys**; cogumelos e
+  fontes de enxofre; cavernas do End → Woobat, Noibat, Noivern.
+- Lendários nascem só no bucket `ultra-rare` com peso `0.05` (≈180× mais raros
+  que um comum do mesmo bioma).
+- **Fix de compatibilidade:** os 25 biomas do BetterEnd são adicionados à tag
+  `cobblemon:is_end` (`required: false`), para os ~42 spawns de End padrão do
+  Cobblemon também funcionarem lá — hoje aparentemente não funcionam, já que nada
+  adiciona esses biomas ao `minecraft:is_end`.
+
+Esses são spawns nativos do Cobblemon (datapack), independentes das regras de
+`environment` do mod (que só valem para o spawn aleatório e os outbreaks).
+
 ### Regras ambientais
 Tanto os spawns aleatórios quanto os outbreaks respeitam checagens de adequação
 ambiental (seção `environment` da config), para os pokémon não aparecerem onde

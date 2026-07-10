@@ -1,0 +1,134 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-shadow-murkrow",
+            "pokemon": "murkrow",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-duskull",
+            "pokemon": "duskull",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-zorua",
+            "pokemon": "zorua",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-sableye",
+            "pokemon": "sableye",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-honchkrow",
+            "pokemon": "honchkrow",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-absol",
+            "pokemon": "absol",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-shadow-spiritomb",
+            "pokemon": "spiritomb",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "52-62",
+            "weight": 0.8,
+            "condition": {
+                "biomes": [
+                    "betterend:shadow_forest",
+                    "betterend:umbra_valley"
+                ]
+            }
+        }
+    ]
+}

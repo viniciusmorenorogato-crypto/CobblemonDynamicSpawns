@@ -1,0 +1,122 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-mankey",
+            "pokemon": "mankey",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-numel",
+            "pokemon": "numel",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-heatmor",
+            "pokemon": "heatmor",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-pansear",
+            "pokemon": "pansear",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-primeape",
+            "pokemon": "primeape",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-jungle_grasslands-camerupt",
+            "pokemon": "camerupt",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_jungle",
+                    "betternether:nether_grasslands",
+                    "betternether:poor_nether_grasslands"
+                ]
+            }
+        }
+    ]
+}

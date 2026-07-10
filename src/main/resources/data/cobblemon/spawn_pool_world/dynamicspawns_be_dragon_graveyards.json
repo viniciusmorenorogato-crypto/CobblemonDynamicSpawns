@@ -1,0 +1,127 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-deino",
+            "pokemon": "deino",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-46",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-duskull",
+            "pokemon": "duskull",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-druddigon",
+            "pokemon": "druddigon",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-48",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-golett",
+            "pokemon": "golett",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-zweilous",
+            "pokemon": "zweilous",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-golurk",
+            "pokemon": "golurk",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-dragon_graveyards-regidrago",
+            "pokemon": "regidrago",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "60-70",
+            "weight": 0.05,
+            "condition": {
+                "biomes": [
+                    "betterend:dragon_graveyards"
+                ]
+            }
+        }
+    ]
+}

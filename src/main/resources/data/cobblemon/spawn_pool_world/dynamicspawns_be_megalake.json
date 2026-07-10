@@ -1,0 +1,134 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-megalake-chinchou",
+            "pokemon": "chinchou",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "submerged",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-frillish",
+            "pokemon": "frillish",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "submerged",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-staryu",
+            "pokemon": "staryu",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "submerged",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-psyduck",
+            "pokemon": "psyduck",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-lanturn",
+            "pokemon": "lanturn",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "submerged",
+            "bucket": "rare",
+            "level": "45-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-starmie",
+            "pokemon": "starmie",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "submerged",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-megalake-lapras",
+            "pokemon": "lapras",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "surface",
+            "bucket": "ultra-rare",
+            "level": "50-60",
+            "weight": 0.8,
+            "condition": {
+                "biomes": [
+                    "betterend:megalake",
+                    "betterend:megalake_grove"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,179 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-bone_soul-cubone",
+            "pokemon": "cubone",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-litwick",
+            "pokemon": "litwick",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-duskull",
+            "pokemon": "duskull",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-yamask",
+            "pokemon": "yamask",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-shuppet",
+            "pokemon": "shuppet",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-marowak",
+            "pokemon": "marowak",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-dusclops",
+            "pokemon": "dusclops",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-lampent",
+            "pokemon": "lampent",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-bone_soul-spiritomb",
+            "pokemon": "spiritomb",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "50-60",
+            "weight": 0.8,
+            "condition": {
+                "biomes": [
+                    "betternether:bone_reef",
+                    "betternether:sulfuric_bone_reef",
+                    "betternether:soul_plain"
+                ]
+            }
+        }
+    ]
+}

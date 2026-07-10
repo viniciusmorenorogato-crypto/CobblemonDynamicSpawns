@@ -1,0 +1,110 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-gravel_desert-geodude",
+            "pokemon": "geodude",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-gravel_desert-diglett",
+            "pokemon": "diglett",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "22-38",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-gravel_desert-rhyhorn",
+            "pokemon": "rhyhorn",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-gravel_desert-trapinch",
+            "pokemon": "trapinch",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-gravel_desert-onix",
+            "pokemon": "onix",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-gravel_desert-dugtrio",
+            "pokemon": "dugtrio",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:gravel_desert"
+                ]
+            }
+        }
+    ]
+}

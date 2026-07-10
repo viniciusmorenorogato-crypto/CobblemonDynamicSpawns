@@ -1,0 +1,116 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-mushroomland-foongus",
+            "pokemon": "foongus",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-mushroomland-shroomish",
+            "pokemon": "shroomish",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-mushroomland-morelull",
+            "pokemon": "morelull",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-mushroomland-paras",
+            "pokemon": "paras",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-mushroomland-amoonguss",
+            "pokemon": "amoonguss",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-mushroomland-breloom",
+            "pokemon": "breloom",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:foggy_mushroomland",
+                    "betterend:umbrella_jungle"
+                ]
+            }
+        }
+    ]
+}

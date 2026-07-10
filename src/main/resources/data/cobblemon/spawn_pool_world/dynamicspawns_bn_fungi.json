@@ -1,0 +1,134 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-fungi-koffing",
+            "pokemon": "koffing",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-fungi-zubat",
+            "pokemon": "zubat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "22-38",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-fungi-grimer",
+            "pokemon": "grimer",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-fungi-gulpin",
+            "pokemon": "gulpin",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "28-42",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-fungi-weezing",
+            "pokemon": "weezing",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-fungi-golbat",
+            "pokemon": "golbat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "40-52",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:nether_mushroom_forest",
+                    "betternether:nether_mushroom_forest_edge",
+                    "betternether:old_fungiwoods",
+                    "betternether:upside_down_forest",
+                    "betternether:upside_down_forest_cleared"
+                ]
+            }
+        }
+    ]
+}

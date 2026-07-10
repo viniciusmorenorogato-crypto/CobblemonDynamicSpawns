@@ -1,0 +1,155 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-crystal-roggenrola",
+            "pokemon": "roggenrola",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-geodude",
+            "pokemon": "geodude",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-carbink",
+            "pokemon": "carbink",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-nosepass",
+            "pokemon": "nosepass",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-boldore",
+            "pokemon": "boldore",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-probopass",
+            "pokemon": "probopass",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-crystal-beldum",
+            "pokemon": "beldum",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "45-55",
+            "weight": 0.8,
+            "condition": {
+                "biomes": [
+                    "betterend:crystal_mountains",
+                    "betterend:amber_land",
+                    "betterend:jade_cave",
+                    "betterend:lush_smaragdant_cave",
+                    "betterend:empty_smaragdant_cave"
+                ]
+            }
+        }
+    ]
+}

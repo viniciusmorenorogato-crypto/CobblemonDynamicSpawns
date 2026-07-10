@@ -1,0 +1,134 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betternether"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-bn-magma-slugma",
+            "pokemon": "slugma",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-numel",
+            "pokemon": "numel",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-magby",
+            "pokemon": "magby",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-torkoal",
+            "pokemon": "torkoal",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "30-45",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-magcargo",
+            "pokemon": "magcargo",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-magmar",
+            "pokemon": "magmar",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "42-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-bn-magma-heatran",
+            "pokemon": "heatran",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "58-68",
+            "weight": 0.05,
+            "condition": {
+                "biomes": [
+                    "betternether:magma_land",
+                    "betternether:flooded_deltas"
+                ]
+            }
+        }
+    ]
+}

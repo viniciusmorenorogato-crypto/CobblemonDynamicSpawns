@@ -1,0 +1,148 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-glowing-clefairy",
+            "pokemon": "clefairy",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-chingling",
+            "pokemon": "chingling",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-ralts",
+            "pokemon": "ralts",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-elgyem",
+            "pokemon": "elgyem",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-clefable",
+            "pokemon": "clefable",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-chimecho",
+            "pokemon": "chimecho",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-glowing-cresselia",
+            "pokemon": "cresselia",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "58-68",
+            "weight": 0.05,
+            "condition": {
+                "biomes": [
+                    "betterend:glowing_grasslands",
+                    "betterend:neon_oasis",
+                    "betterend:lantern_woods",
+                    "betterend:blossoming_spires"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-caves-zubat",
+            "pokemon": "zubat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "28-42",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-woobat",
+            "pokemon": "woobat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-noibat",
+            "pokemon": "noibat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-elgyem",
+            "pokemon": "elgyem",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-golbat",
+            "pokemon": "golbat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-swoobat",
+            "pokemon": "swoobat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "45-55",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-caves-noivern",
+            "pokemon": "noivern",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "52-62",
+            "weight": 0.8,
+            "condition": {
+                "biomes": [
+                    "betterend:empty_end_cave",
+                    "betterend:empty_aurora_cave",
+                    "betterend:lush_aurora_cave"
+                ]
+            }
+        }
+    ]
+}

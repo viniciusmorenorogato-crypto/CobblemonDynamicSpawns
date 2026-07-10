@@ -1,0 +1,122 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [
+        "betterend"
+    ],
+    "spawns": [
+        {
+            "id": "dynamicspawns-be-wastelands-baltoy",
+            "pokemon": "baltoy",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-wastelands-rhyhorn",
+            "pokemon": "rhyhorn",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "30-45",
+            "weight": 9,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-wastelands-trapinch",
+            "pokemon": "trapinch",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-wastelands-golett",
+            "pokemon": "golett",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-46",
+            "weight": 6,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-wastelands-claydol",
+            "pokemon": "claydol",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        },
+        {
+            "id": "dynamicspawns-be-wastelands-rhydon",
+            "pokemon": "rhydon",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 2.5,
+            "condition": {
+                "biomes": [
+                    "betterend:dust_wastelands",
+                    "betterend:dry_shrubland",
+                    "betterend:painted_mountains"
+                ]
+            }
+        }
+    ]
+}
