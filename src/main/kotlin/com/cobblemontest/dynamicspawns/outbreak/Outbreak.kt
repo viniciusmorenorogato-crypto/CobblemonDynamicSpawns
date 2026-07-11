@@ -108,7 +108,7 @@ class Outbreak(
         // caem em chunks que ticam (visíveis/ativos) e não desperdiçamos o orçamento nem
         // estouramos o maxConcurrent contando entidades descarregadas como mortas.
         if (server.tickCount % 100 == 0 &&
-            spawnedTotal < cfg.totalPokemon &&
+            cleared < cfg.totalPokemon &&
             hasPlayerNearby(world) &&
             countAlive(world) < cfg.maxConcurrent
         ) {

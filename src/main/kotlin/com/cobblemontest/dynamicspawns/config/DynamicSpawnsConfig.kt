@@ -47,6 +47,14 @@ class DynamicSpawnsConfig {
         // true = só pure fliers estritos (que não andam, ex: Zubat, Drifloon). false =
         // qualquer espécie que voa, incluindo pássaros que também andam (ex: Altaria, Pidgeot).
         var onlyPureFliers = true
+        // Pesos por bucket de raridade do Cobblemon: pura-voadoras comuns aparecem mais
+        // que as raras. Espécies sem spawn natural (sem bucket) não são escolhidas.
+        var bucketWeights = mutableMapOf(
+            "common" to 60.0,
+            "uncommon" to 25.0,
+            "rare" to 10.0,
+            "ultra-rare" to 5.0
+        )
     }
 
     /** Regras de adequação ambiental aplicadas aos spawns dinâmicos (aleatórios e outbreaks). */

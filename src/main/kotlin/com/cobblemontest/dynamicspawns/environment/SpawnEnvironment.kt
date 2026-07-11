@@ -36,6 +36,16 @@ object SpawnEnvironment {
         return walk.avoidsLand || !walk.canWalk
     }
 
+    /**
+     * Voador "de verdade" do céu: voa (canFly) e NÃO respira debaixo d'água. O segundo
+     * critério exclui espécies aquáticas que têm canFly no Cobblemon (ex: Dragonair,
+     * Dragonite, Gyarados-like, enguias, águas-vivas), que não devem voar no céu.
+     */
+    fun isSkyFlier(species: Species): Boolean {
+        val move = species.behaviour.moving
+        return move.fly.canFly && !move.swim.canBreatheUnderwater
+    }
+
     /** True se a espécie é aquática (vive na água): respira debaixo d'água ou evita terra. */
     fun isWaterDweller(species: Species): Boolean =
         species.behaviour.moving.swim.canBreatheUnderwater || isAquaticOnly(species)

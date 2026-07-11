@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.entity.SpawnEvent
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemontest.dynamicspawns.DynamicSpawns
+import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.levelgen.Heightmap
 import net.minecraft.world.phys.Vec3
@@ -31,7 +32,8 @@ object FlyingSpawnSystem {
         if (!cfg.enabled) return
         if (event.isCanceled) return
         val entity = event.entity as? PokemonEntity ?: return
-        if (!entity.canFly()) return
+        // Voador de verdade: voa e não é aquático (exclui Dragonair/Dragonite/enguias/etc.)
+        if (!SpawnEnvironment.isSkyFlier(entity.pokemon.species)) return
         if (cfg.onlyPureFliers && !isPureFlier(entity)) return
         makeAirborne(entity, event.spawnablePosition.world)
     }

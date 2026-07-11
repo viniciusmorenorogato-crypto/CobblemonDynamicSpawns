@@ -4,14 +4,11 @@ import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.entity.SpawnEvent
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
-import com.cobblemon.mod.common.api.spawning.CobblemonSpawnPools
-import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import com.cobblemon.mod.common.pokemon.Species
-import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemontest.dynamicspawns.DynamicSpawns
 import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
+import com.cobblemontest.dynamicspawns.rarity.RaritySelector
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.Registries
 import net.minecraft.server.level.ServerLevel
@@ -68,21 +65,15 @@ object RandomSpawnSystem {
         val pos = event.spawnablePosition.position
         val aquatic = isAquaticContext(world, pos)
 
-        // Agrupa as candidatas por bucket de raridade do Cobblemon. Espécies sem spawn
-        // natural (sem bucket na spawn pool do mundo) ficam de fora da troca.
-        val buckets = speciesBuckets()
-        val byBucket = HashMap<String, MutableList<Species>>()
-        PokemonSpecies.implemented.forEach { species ->
-            val bucket = buckets[species.resourceIdentifier.toString()] ?: return@forEach
-            if (species.labels.any { label -> label in excluded }) return@forEach
-            if (species.resourceIdentifier.namespace in excludedNamespaces) return@forEach
-            if (aquatic && !species.behaviour.moving.swim.canBreatheUnderwater) return@forEach
-            // Tipo permitido na dimensão (ex: sem grama no Nether) + terreno adequado
-            // à posição (ex: aquático não nasce em cima de árvore)
-            if (!SpawnEnvironment.isSpeciesAllowed(species, world, pos)) return@forEach
-            byBucket.getOrPut(bucket) { mutableListOf() }.add(species)
+        // Candidatas: filtra por labels, namespace, contexto aquático e adequação ao local.
+        // O sorteio ponderado por bucket (RaritySelector) já descarta espécies sem spawn natural.
+        val candidates = PokemonSpecies.implemented.filter { species ->
+            species.labels.none { label -> label in excluded } &&
+                species.resourceIdentifier.namespace !in excludedNamespaces &&
+                (!aquatic || species.behaviour.moving.swim.canBreatheUnderwater) &&
+                SpawnEnvironment.isSpeciesAllowed(species, world, pos)
         }
-        val replacement = pickWeighted(byBucket, world) ?: return
+        val replacement = RaritySelector.pickWeighted(candidates, cfg.bucketWeights, world.random) ?: return
 
         // Nível realista baseado na força da espécie (BST): fracos nascem baixo, fortes/raros
         // sobem até o teto. Se desativado, mantém o nível do spawn original.
@@ -97,56 +88,6 @@ object RandomSpawnSystem {
             "Spawn aleatório: {} (nível {}, aquático={})",
             replacement.name, level, aquatic
         )
-    }
-
-    // Cache espécie (identifier) → bucket de raridade, montado a partir da spawn pool
-    // do mundo (inclui datapacks/modpacks). Invalidado quando a pool recarrega.
-    private var bucketCache: Map<String, String>? = null
-    private var reloadHookRegistered = false
-
-    /**
-     * Mapa identifier→bucket. Se a espécie aparece em mais de um bucket na pool,
-     * vale o mais comum (é a raridade "efetiva" dela no mundo).
-     */
-    private fun speciesBuckets(): Map<String, String> {
-        bucketCache?.let { return it }
-        if (!reloadHookRegistered) {
-            // Datapack reload (/reload, mods) refaz a pool → invalida o cache
-            CobblemonSpawnPools.WORLD_SPAWN_POOL.observable.subscribe(Priority.NORMAL) { bucketCache = null }
-            reloadHookRegistered = true
-        }
-        val rank = mapOf("common" to 0, "uncommon" to 1, "rare" to 2, "ultra-rare" to 3)
-        val map = mutableMapOf<String, String>()
-        CobblemonSpawnPools.WORLD_SPAWN_POOL.details.forEach { detail ->
-            val pokemonDetail = detail as? PokemonSpawnDetail ?: return@forEach
-            val speciesStr = pokemonDetail.pokemon.species ?: return@forEach
-            if (speciesStr.equals("random", ignoreCase = true)) return@forEach
-            val species = PokemonSpecies.getByIdentifier(speciesStr.asIdentifierDefaultingNamespace()) ?: return@forEach
-            val key = species.resourceIdentifier.toString()
-            val bucket = detail.bucket.name
-            val current = map[key]
-            if (current == null || (rank[bucket] ?: Int.MAX_VALUE) < (rank[current] ?: Int.MAX_VALUE)) {
-                map[key] = bucket
-            }
-        }
-        bucketCache = map
-        DynamicSpawns.LOGGER.debug("Cache de raridade montado: {} espécies com bucket", map.size)
-        return map
-    }
-
-    /** Sorteia o bucket pelos pesos da config e uma espécie uniforme dentro dele. */
-    private fun pickWeighted(byBucket: Map<String, List<Species>>, world: ServerLevel): Species? {
-        val weights = DynamicSpawns.config.randomSpawns.bucketWeights
-        val entries = byBucket.entries.filter { it.value.isNotEmpty() && (weights[it.key] ?: 0.0) > 0.0 }
-        if (entries.isEmpty()) return null
-        val total = entries.sumOf { weights[it.key]!! }
-        var roll = world.random.nextDouble() * total
-        for (entry in entries) {
-            roll -= weights[entry.key]!!
-            if (roll <= 0) return entry.value[world.random.nextInt(entry.value.size)]
-        }
-        val last = entries.last().value
-        return last[world.random.nextInt(last.size)]
     }
 
     /**

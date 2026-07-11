@@ -90,19 +90,23 @@ Gerada em `config/dynamicspawns.json` na primeira execução. Todos os números
 `/dynamicspawns reload` aplica sem reiniciar.
 
 ### 4. Spawns voadores
-Pássaros e outras espécies que voam (`canFly`) nascem **no ar, já voando**, em
-vez de paradas no chão — uma Altaria aparece planando sobre o terreno em vez de
-sentada num campo. A altura acima da superfície é configurável
-(`minHeight`/`maxHeight`, padrão 12-40; aumente para ~120 para nascerem no nível
-das nuvens), e `onlyPureFliers` limita às espécies que não andam. Usa a API
-`canFly`/`setFlying` do Cobblemon — sem mixins.
+Pássaros e outros voadores de verdade nascem **no ar, já voando**, em vez de
+parados no chão — uma Altaria aparece planando sobre o terreno em vez de sentada
+num campo. "Voador de verdade" = espécie que voa **e não é aquática**: o
+Cobblemon marca alguns pokémon de água (Dragonair, Dragonite, águas-vivas,
+enguias, lulas) com `canFly`, e esses **não** são levantados ao céu. A altura é
+configurável (`minHeight`/`maxHeight`, padrão 12-40; aumente para ~120 para
+nascerem no nível das nuvens), e `onlyPureFliers` limita às espécies que não
+andam. Usa a API `canFly`/`setFlying` do Cobblemon — sem mixins.
 
 Além disso, um **spawner de céu** recorrente (`skyFliers`) spawna periodicamente
-alguns pássaros no alto, perto de cada jogador, sob céu aberto, de um pool
-filtrado — lendários/míticos/ultra beasts e espécies muito raras (catch rate
-baixo) ficam de fora. Por padrão são **pure fliers** estritos (espécies que não
-andam, ex: Zubat, Drifloon); use `onlyPureFliers: false` para incluir também os
-pássaros que andam, como Altaria e Pidgeot. Intervalo, quantidade, altura,
+alguns voadores no alto, perto de cada jogador, sob céu aberto. O pool exclui
+voadores aquáticos, lendários/míticos/ultra beasts e espécies muito raras (catch
+rate baixo), e a escolha é **ponderada pelos buckets de raridade do Cobblemon**
+(`bucketWeights`, common>uncommon>rare>ultra-rare), então voadores comuns
+aparecem mais que os raros. Por padrão são **pure fliers** estritos (espécies que
+não andam, ex: Zubat, Drifloon); use `onlyPureFliers: false` para incluir também
+os pássaros que andam, como Altaria e Pidgeot. Intervalo, quantidade, altura,
 distância e níveis são configuráveis.
 
 ### 5. Spawns aleatórios

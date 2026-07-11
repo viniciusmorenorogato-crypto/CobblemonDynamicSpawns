@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemontest.dynamicspawns.DynamicSpawns
 import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
+import com.cobblemontest.dynamicspawns.rarity.RaritySelector
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.core.BlockPos
 import net.minecraft.server.MinecraftServer
@@ -57,16 +58,22 @@ object SkyFlierSystem {
             val world = player.serverLevel()
             if (!SpawnEnvironment.dynamicSpawnsAllowed(world)) return@forEach
             val count = world.random.nextIntBetweenInclusive(cfg.perPlayerMin, cfg.perPlayerMax)
-            repeat(count) { spawnFlierNear(player, world, cfg, pool.random()) }
+            // Escolhe cada pássaro ponderando pela raridade real do Cobblemon (buckets):
+            // pura-voadoras comuns aparecem mais, raras aparecem menos.
+            repeat(count) {
+                val species = RaritySelector.pickWeighted(pool, cfg.bucketWeights, world.random) ?: return@repeat
+                spawnFlierNear(player, world, cfg, species)
+            }
         }
     }
 
-    /** Espécies voadoras não muito raras e sem labels excluídos. */
+    /** Voadores de verdade (não aquáticos), pure fliers se configurado, sem labels excluídos. */
     private fun fliersPool(cfg: com.cobblemontest.dynamicspawns.config.DynamicSpawnsConfig.SkyFliers): List<Species> {
         val excluded = cfg.excludedLabels.toSet()
         return PokemonSpecies.implemented.filter { s ->
             val move = s.behaviour.moving
-            move.fly.canFly &&
+            // isSkyFlier já garante canFly && não-aquático (exclui Dragonair e afins)
+            SpawnEnvironment.isSkyFlier(s) &&
                 (!cfg.onlyPureFliers || move.walk.avoidsLand || !move.walk.canWalk) &&
                 s.catchRate >= cfg.minCatchRate &&
                 s.labels.none { it in excluded }

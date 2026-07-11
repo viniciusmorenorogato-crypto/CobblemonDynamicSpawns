@@ -76,19 +76,24 @@ world, announced in chat to every player:
   spawns a spurious outbreak
 
 ### 4. Flying spawns
-Birds and other flying species (`canFly`) spawn **in the air, already flying**,
-instead of standing on the ground — an Altaria shows up gliding above the
-terrain rather than sitting in a field. Height above the surface is configurable
-(`minHeight`/`maxHeight`, default 12-40; raise it toward ~120 for cloud-level
-spawns), and `onlyPureFliers` can limit it to species that can't walk. Uses
-Cobblemon's `canFly`/`setFlying` API — no mixins.
+Birds and other true fliers spawn **in the air, already flying**, instead of
+standing on the ground — an Altaria shows up gliding above the terrain rather
+than sitting in a field. A "true flier" is a species that flies **and isn't
+aquatic**: Cobblemon marks some water Pokémon (Dragonair, Dragonite, jellyfish,
+eels, squids) with `canFly`, and those are deliberately **not** raised into the
+sky. Height above the surface is configurable (`minHeight`/`maxHeight`, default
+12-40; raise it toward ~120 for cloud-level spawns), and `onlyPureFliers` can
+limit it to species that can't walk. Uses Cobblemon's `canFly`/`setFlying` API —
+no mixins.
 
 On top of that, a recurring **sky spawner** (`skyFliers`) periodically spawns a
-few fliers high in the air near each player, under open sky, from a filtered
-pool — legendaries/mythicals/ultra-beasts and very rare species (low catch rate)
-excluded. By default it's strict **pure fliers** (species that can't walk, e.g.
-Zubat, Drifloon); set `onlyPureFliers: false` to also include walking birds like
-Altaria and Pidgeot. Interval, count, height, distance and levels are all
+few fliers high in the air near each player, under open sky. The pool excludes
+aquatic fliers, legendaries/mythicals/ultra-beasts and very rare species (low
+catch rate), and the pick is **weighted by Cobblemon's rarity buckets**
+(`bucketWeights`, common>uncommon>rare>ultra-rare) so common fliers show up more
+than rare ones. By default it's strict **pure fliers** (species that can't walk,
+e.g. Zubat, Drifloon); set `onlyPureFliers: false` to also include walking birds
+like Altaria and Pidgeot. Interval, count, height, distance and levels are all
 configurable.
 
 ### 5. Random spawns
