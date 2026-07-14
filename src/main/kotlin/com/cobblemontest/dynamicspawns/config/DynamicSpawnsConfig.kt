@@ -147,6 +147,15 @@ class DynamicSpawnsConfig {
         // Teto de nível dos spawns do outbreak (mesmo com a escalada). A variação continua
         // vindo da faixa levelMin-levelMax, que se desloca com a escalada.
         var levelCap = 80
+        // Progressão de IVs (estilo SV): a cada clearsPerIvStep pokémon limpos, os próximos
+        // ganham +1 IV perfeito garantido (31), começando em baseGuaranteedIvs e limitado a
+        // maxProgressionIvs. O restante dos IVs continua aleatório.
+        var baseGuaranteedIvs = 0
+        var clearsPerIvStep = 20
+        var maxProgressionIvs = 4
+        // Shiny do outbreak vem quase perfeito: N IVs perfeitos entre estes valores.
+        var shinyMinPerfectIvs = 5
+        var shinyMaxPerfectIvs = 6
     }
 
     fun save(path: Path) {

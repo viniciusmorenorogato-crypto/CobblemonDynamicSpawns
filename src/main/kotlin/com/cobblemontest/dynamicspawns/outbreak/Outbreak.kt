@@ -1,7 +1,10 @@
 package com.cobblemontest.dynamicspawns.outbreak
 
 import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
+import com.cobblemon.mod.common.pokemon.IVs
+import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemontest.dynamicspawns.DynamicSpawns
 import com.cobblemontest.dynamicspawns.environment.SpawnEnvironment
@@ -129,6 +132,14 @@ class Outbreak(
     private fun countAlive(world: ServerLevel): Int =
         entityUuids.count { world.getEntity(it)?.isAlive == true }
 
+    /** Garante [count] IVs perfeitos (31) em stats aleatórios distintos; o resto fica aleatório. */
+    private fun applyPerfectIvs(pokemon: Pokemon, count: Int) {
+        if (count <= 0) return
+        Stats.PERMANENT.shuffled().take(count.coerceAtMost(Stats.PERMANENT.size)).forEach { stat ->
+            pokemon.setIV(stat, IVs.MAX_VALUE)
+        }
+    }
+
     fun spawnOne(world: ServerLevel, guaranteedShiny: Boolean = false): Boolean {
         val random = world.random
         val angle = random.nextDouble() * 2 * PI
@@ -156,6 +167,17 @@ class Outbreak(
         val pokemon = species.create(level)
         pokemon.shiny = guaranteedShiny ||
             random.nextFloat() < shinyRolls() / Cobblemon.config.shinyRate
+
+        // IVs: shiny vem quase perfeito (5-6 IVs em 31); os demais seguem uma progressão
+        // que melhora conforme o outbreak é limpo (estilo Scarlet/Violet).
+        val perfectIvs = if (pokemon.shiny) {
+            random.nextIntBetweenInclusive(cfg.shinyMinPerfectIvs, cfg.shinyMaxPerfectIvs)
+        } else if (cfg.clearsPerIvStep > 0) {
+            min(cfg.baseGuaranteedIvs + cleared / cfg.clearsPerIvStep, cfg.maxProgressionIvs)
+        } else {
+            cfg.baseGuaranteedIvs
+        }
+        applyPerfectIvs(pokemon, perfectIvs)
 
         val entity = PokemonEntity(world, pokemon)
         entity.moveTo(x, surface.y.toDouble(), z, random.nextFloat() * 360f, 0f)

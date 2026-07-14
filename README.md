@@ -62,6 +62,11 @@ world, announced in chat to every player:
   the next spawns gain `+levelBonusPerStep` (8) levels — the outbreak gets tougher
   as you thin it out (e.g. 15-40 → ~39-64 after 30 → ~63-80 after 60). Variation
   comes from the level range, capped at `levelCap` (80)
+- **IV progression** (SV-style): every `clearsPerIvStep` (20) Pokémon cleared,
+  the next spawns gain +1 guaranteed perfect IV (31), from `baseGuaranteedIvs`
+  up to `maxProgressionIvs` (4); the rest stay random
+- **Shiny reward IVs**: a shiny from the outbreak comes near-perfect —
+  `shinyMinPerfectIvs`-`shinyMaxPerfectIvs` (5-6) guaranteed 31 IVs
 - Clear the entire outbreak → a **guaranteed shiny** spawns as the final reward
 - Ends when its lifetime runs out (also in-game day time, so advancing/sleeping
   ends outbreaks too) or when fully cleared

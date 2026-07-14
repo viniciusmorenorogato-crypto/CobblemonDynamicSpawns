@@ -60,6 +60,11 @@ aleatório do mapa, anunciado no chat para todos:
   capturados, os próximos spawns ganham `+levelBonusPerStep` (8) de nível — o
   outbreak fica mais forte conforme você o reduz (ex: 15-40 → ~39-64 aos 30 →
   ~63-80 aos 60). A variação vem da faixa de nível, com teto em `levelCap` (80)
+- **Progressão de IVs** (estilo SV): a cada `clearsPerIvStep` (20) pokémon
+  limpos, os próximos ganham +1 IV perfeito garantido (31), de `baseGuaranteedIvs`
+  até `maxProgressionIvs` (4); o restante fica aleatório
+- **IVs do shiny**: um shiny do outbreak vem quase perfeito —
+  `shinyMinPerfectIvs`-`shinyMaxPerfectIvs` (5-6) IVs garantidos em 31
 - Limpar o outbreak inteiro → spawna um exemplar **shiny garantido** de recompensa
 - Termina quando o tempo de vida acaba (também em tempo de dia in-game, então
   avançar/dormir também encerra os outbreaks) ou ao ser limpo
