@@ -5,6 +5,8 @@
 Mod addon para Cobblemon 1.7.3 (Minecraft 1.21.1, Fabric) que deixa os spawns de
 pokémon mais dinâmicos.
 
+**Versão atual: 1.1.0** — veja o [changelog](CHANGELOG.md).
+
 ## Funcionalidades
 
 ### 1. Variedade de spawns por bioma + luz (datapack)
@@ -200,7 +202,7 @@ de spawn pools) — **zero mixins** nos internals do Cobblemon. Isso minimiza
 quebras em futuras atualizações. A dependência declarada aceita `>=1.7.3 <1.8.0`;
 para atualizar, ajuste a versão no `build.gradle.kts` e no `fabric.mod.json`.
 
-## Limitações conhecidas (v1.0.0)
+## Limitações conhecidas (v1.1.0)
 
 - Mensagens de chat são traduzidas no cliente (inglês e pt-BR inclusos);
   jogadores que entrarem sem o mod no cliente verão as chaves de tradução cruas

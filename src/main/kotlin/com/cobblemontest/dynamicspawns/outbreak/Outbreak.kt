@@ -18,6 +18,12 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.FluidTags
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
+import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.entity.item.ItemEntity
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
@@ -214,6 +220,7 @@ class Outbreak(
         }
 
         if (cleared >= cfg.totalPokemon) {
+            dropOutbreakReward(server)
             if (cfg.guaranteedShinyOnClear && !finaleSpawned) {
                 finaleSpawned = true
                 server.getLevel(dimension)?.let { world ->
@@ -233,6 +240,35 @@ class Outbreak(
                 )
             }
             finished = true
+        }
+    }
+
+    /**
+     * Integração opcional com o CobbleServerUtils: dropa 1 Arceus Wish ao limpar o outbreak inteiro.
+     * Guardado por isModLoaded + lookup em runtime (sem dependência de compilação), então este mod
+     * continua funcionando isolado — sem o CobbleServerUtils nada é dropado e o comportamento é o mesmo.
+     */
+    private fun dropOutbreakReward(server: MinecraftServer) {
+        if (!FabricLoader.getInstance().isModLoaded("cobbleserverutils")) return
+        val item = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath("cobbleserverutils", "desejo_de_arceus"))
+        if (item == Items.AIR) return
+        val world = server.getLevel(dimension) ?: return
+        val rSq = cfg.activationRadius.toDouble() * cfg.activationRadius.toDouble()
+        val nearby = world.players().filter {
+            val dx = it.x - center.x
+            val dz = it.z - center.z
+            dx * dx + dz * dz < rSq
+        }
+        if (nearby.isEmpty()) {
+            val e = ItemEntity(world, center.x + 0.5, center.y + 1.0, center.z + 0.5, ItemStack(item, 1))
+            e.setDefaultPickUpDelay()
+            world.addFreshEntity(e)
+            return
+        }
+        for (player in nearby) {
+            val e = ItemEntity(world, player.x, player.y + 0.5, player.z, ItemStack(item, 1))
+            e.setDefaultPickUpDelay()
+            world.addFreshEntity(e)
         }
     }
 

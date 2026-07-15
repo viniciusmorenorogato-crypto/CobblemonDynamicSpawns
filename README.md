@@ -7,6 +7,8 @@ spawning far more dynamic: wider biome variety, light-based cave spawns, wild
 hordes led by evolved leaders, SV-style Mass Outbreaks, and a dash of pure
 randomness.
 
+**Current version: 1.1.0** — see the [changelog](CHANGELOG.md).
+
 ## Features
 
 ### 1. Biome + light-based spawn variety (datapack)
@@ -210,7 +212,7 @@ This minimizes breakage across future updates. The declared dependency accepts
 - [Fabric API](https://modrinth.com/mod/fabric-api) (required)
 - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) (required)
 
-## Known limitations (v1.0.0)
+## Known limitations (v1.1.0)
 
 - Chat messages are translated client-side (English and Brazilian Portuguese
   included); players joining without the mod on their client will see raw
