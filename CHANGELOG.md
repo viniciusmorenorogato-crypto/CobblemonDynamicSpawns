@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.1 — Cobblemon 1.7.3 / Minecraft 1.21.1 (Fabric)
+
+- **Outbreak announcements now name the dimension** and include Y, so you can
+  actually find them: *"A swarm of Pikachu appeared in the Overworld at X=…,
+  Y=…, Z=…"*. The join notice and `/dynamicspawns outbreak info` show it too.
+- **Dynamic spawns are now allow-listed by dimension** (`environment.allowedDimensions`,
+  default Overworld + Nether) instead of blacklisted. Modded instanced dimensions —
+  raid dens, distortion worlds, nightmare/origin, etc. — are excluded automatically
+  without having to list each one, so outbreaks no longer fire inside a raid.
+
 ## 1.1.0 — Cobblemon 1.7.3 / Minecraft 1.21.1 (Fabric)
 
 Everything below was added on top of the initial 1.0.0 (hordes, Mass Outbreaks,

@@ -12,10 +12,12 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.ChatFormatting
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceKey
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.tags.FluidTags
+import net.minecraft.world.level.Level
 import net.minecraft.world.level.levelgen.Heightmap
 import kotlin.math.PI
 import kotlin.math.cos
@@ -242,7 +244,7 @@ object OutbreakManager {
             server,
             Component.translatable(
                 "dynamicspawns.outbreak.started",
-                species.translatedName, center.x, center.z
+                species.translatedName, dimensionName(world.dimension()), center.x, center.y, center.z
             ).withStyle(ChatFormatting.RED, ChatFormatting.BOLD)
         )
         // Escalona o próximo início a partir de agora
@@ -251,7 +253,18 @@ object OutbreakManager {
         return true
     }
 
-    /** Ao entrar no mundo, lista os outbreaks ativos (coordenadas + tempo restante). */
+    /**
+     * Nome amigável da dimensão para o chat: traduzido nas vanilla, ou o id cru
+     * (ex: "outromod:dimensao") para dimensões de mods.
+     */
+    fun dimensionName(dimension: ResourceKey<Level>): Component = when (dimension) {
+        Level.OVERWORLD -> Component.translatable("dynamicspawns.dimension.overworld")
+        Level.NETHER -> Component.translatable("dynamicspawns.dimension.the_nether")
+        Level.END -> Component.translatable("dynamicspawns.dimension.the_end")
+        else -> Component.literal(dimension.location().toString())
+    }
+
+    /** Ao entrar no mundo, lista os outbreaks ativos (dimensão, coordenadas + tempo restante). */
     private fun onPlayerJoin(player: ServerPlayer, server: MinecraftServer) {
         if (active.isEmpty()) return
         val dayTime = server.overworld().dayTime
@@ -264,7 +277,9 @@ object OutbreakManager {
                 Component.translatable(
                     "dynamicspawns.join.line",
                     outbreak.species.translatedName,
+                    dimensionName(outbreak.dimension),
                     outbreak.center.x,
+                    outbreak.center.y,
                     outbreak.center.z,
                     outbreak.remainingMinutes(dayTime)
                 ).withStyle(ChatFormatting.YELLOW)

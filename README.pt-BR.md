@@ -5,7 +5,7 @@
 Mod addon para Cobblemon 1.7.3 (Minecraft 1.21.1, Fabric) que deixa os spawns de
 pokémon mais dinâmicos.
 
-**Versão atual: 1.1.0** — veja o [changelog](CHANGELOG.md).
+**Versão atual: 1.1.1** — veja o [changelog](CHANGELOG.md).
 
 ## Funcionalidades
 
@@ -79,22 +79,6 @@ aleatório do mapa, anunciado no chat para todos:
   (`gameTime`), então corre enquanto o servidor está rodando — independente de o
   chunk do outbreak estar carregado — e pausa com o mundo fechado. Reabrir o
   mundo não gera mais um outbreak espúrio
-
-## Comandos (permissão nível 2)
-
-| Comando | Efeito |
-|---|---|
-| `/dynamicspawns reload` | Recarrega a config |
-| `/dynamicspawns horde <espécie>` | Força uma horda na sua posição (usar espécie base que evolui, ex: `bidoof`) |
-| `/dynamicspawns outbreak start [espécie]` | Inicia um outbreak (aleatório ou da espécie dada, perto de você) |
-| `/dynamicspawns outbreak stop` | Encerra todos os outbreaks ativos |
-| `/dynamicspawns outbreak info` | Lista os outbreaks ativos com status |
-
-## Config
-
-Gerada em `config/dynamicspawns.json` na primeira execução. Todos os números
-(chances, tamanhos, intervalos, marcos de shiny) são ajustáveis lá;
-`/dynamicspawns reload` aplica sem reiniciar.
 
 ### 4. Spawns voadores
 Pássaros e outros voadores de verdade nascem **no ar, já voando**, em vez de
@@ -173,8 +157,11 @@ Esses são spawns nativos do Cobblemon (datapack), independentes das regras de
 Tanto os spawns aleatórios quanto os outbreaks respeitam checagens de adequação
 ambiental (seção `environment` da config), para os pokémon não aparecerem onde
 não deveriam:
-- **Dimensões desligadas** (`disabledDimensions`, padrão `minecraft:the_end`):
-  sem aleatoriedade dinâmica lá — o The End mantém seus pokémon originais
+- **Dimensões permitidas** (`allowedDimensions`, padrão `minecraft:overworld` +
+  `minecraft:the_nether`): é uma lista branca, então os spawns dinâmicos só
+  acontecem no mundo real. Dimensões instanciadas de mods (raid dens, distortion
+  world, etc.) e o The End ficam de fora automaticamente, sem precisar listar
+  cada uma — elas mantêm seus próprios pokémon intactos
 - **Tipos proibidos por dimensão** (`dimensionBannedTypes`, padrão: sem grama/
   água/gelo/inseto no Nether): espécies com um tipo proibido são filtradas
   naquela dimensão
@@ -182,6 +169,22 @@ não deveriam:
   terra só nascem na água (chega de Relicanth em cima de árvore), e espécies que
   evitam água não são colocadas submersas. Hordas pulam espécies aquáticas, já
   que seus membros são posicionados em chão sólido
+
+## Comandos (permissão nível 2)
+
+| Comando | Efeito |
+|---|---|
+| `/dynamicspawns reload` | Recarrega a config |
+| `/dynamicspawns horde <espécie>` | Força uma horda na sua posição (usar espécie base que evolui, ex: `bidoof`) |
+| `/dynamicspawns outbreak start [espécie]` | Inicia um outbreak (aleatório ou da espécie dada, perto de você) |
+| `/dynamicspawns outbreak stop` | Encerra todos os outbreaks ativos |
+| `/dynamicspawns outbreak info` | Lista os outbreaks ativos com status |
+
+## Config
+
+Gerada em `config/dynamicspawns.json` na primeira execução. Todos os números
+(chances, tamanhos, intervalos, marcos de shiny) são ajustáveis lá;
+`/dynamicspawns reload` aplica sem reiniciar.
 
 ## Compatibilidade com Cobbleverse
 
@@ -202,7 +205,7 @@ de spawn pools) — **zero mixins** nos internals do Cobblemon. Isso minimiza
 quebras em futuras atualizações. A dependência declarada aceita `>=1.7.3 <1.8.0`;
 para atualizar, ajuste a versão no `build.gradle.kts` e no `fabric.mod.json`.
 
-## Limitações conhecidas (v1.1.0)
+## Limitações conhecidas (v1.1.1)
 
 - Mensagens de chat são traduzidas no cliente (inglês e pt-BR inclusos);
   jogadores que entrarem sem o mod no cliente verão as chaves de tradução cruas

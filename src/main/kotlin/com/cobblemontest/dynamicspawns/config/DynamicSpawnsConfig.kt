@@ -59,8 +59,10 @@ class DynamicSpawnsConfig {
 
     /** Regras de adequação ambiental aplicadas aos spawns dinâmicos (aleatórios e outbreaks). */
     class Environment {
-        // Dimensões onde os spawns dinâmicos são totalmente desligados (ex: The End sem aleatoriedade)
-        var disabledDimensions = mutableListOf("minecraft:the_end")
+        // Lista branca: únicas dimensões que recebem spawns dinâmicos (outbreaks, spawn
+        // aleatório, pássaros do céu). Por ser lista branca, dimensões instanciadas de mods
+        // (raid dens, distortion world, nightmare/origin, etc.) ficam de fora sozinhas.
+        var allowedDimensions = mutableListOf("minecraft:overworld", "minecraft:the_nether")
         // Tipos elementais proibidos por dimensão (ex: nada de grama/água/gelo/inseto no Nether)
         var dimensionBannedTypes: MutableMap<String, MutableList<String>> = mutableMapOf(
             "minecraft:the_nether" to mutableListOf("grass", "water", "ice", "bug")

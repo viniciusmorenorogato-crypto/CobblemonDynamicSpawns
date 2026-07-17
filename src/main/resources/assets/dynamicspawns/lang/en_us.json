@@ -1,5 +1,8 @@
 {
-  "dynamicspawns.outbreak.started": "⚠ MASS OUTBREAK! A swarm of %1$s appeared near X=%2$s, Z=%3$s!",
+  "dynamicspawns.outbreak.started": "⚠ MASS OUTBREAK! A swarm of %1$s appeared in the %2$s at X=%3$s, Y=%4$s, Z=%5$s!",
+  "dynamicspawns.dimension.overworld": "Overworld",
+  "dynamicspawns.dimension.the_nether": "Nether",
+  "dynamicspawns.dimension.the_end": "The End",
   "dynamicspawns.outbreak.milestone1": "✦ The outbreak weakens! Shiny chance x2 for %1$s!",
   "dynamicspawns.outbreak.milestone2": "✦✦ The outbreak is almost over! Shiny chance x3 for %1$s!",
   "dynamicspawns.outbreak.finale": "★ Outbreak cleared! A special %1$s appeared as a reward!",
@@ -17,7 +20,7 @@
   "dynamicspawns.command.start_failed": "Could not start the outbreak (no players online or no valid position away from active outbreaks).",
   "dynamicspawns.command.no_outbreak": "No active outbreak right now.",
   "dynamicspawns.command.info_header": "Active outbreaks: %1$s/%2$s",
-  "dynamicspawns.command.info_line": "#%1$s %2$s at X=%3$s, Z=%4$s | spawned: %5$s, cleared: %6$s, shiny rolls: x%7$s | ~%8$sm left",
+  "dynamicspawns.command.info_line": "#%1$s %2$s in the %3$s at X=%4$s, Y=%5$s, Z=%6$s | spawned: %7$s, cleared: %8$s, shiny rolls: x%9$s | ~%10$sm left",
   "dynamicspawns.join.header": "⚠ Active Mass Outbreaks (%1$s):",
-  "dynamicspawns.join.line": "• %1$s — X=%2$s, Z=%3$s (~%4$s min left)"
+  "dynamicspawns.join.line": "• %1$s — %2$s at X=%3$s, Y=%4$s, Z=%5$s (~%6$s min left)"
 }

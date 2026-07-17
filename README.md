@@ -7,7 +7,7 @@ spawning far more dynamic: wider biome variety, light-based cave spawns, wild
 hordes led by evolved leaders, SV-style Mass Outbreaks, and a dash of pure
 randomness.
 
-**Current version: 1.1.0** — see the [changelog](CHANGELOG.md).
+**Current version: 1.1.1** — see the [changelog](CHANGELOG.md).
 
 ## Features
 
@@ -158,8 +158,11 @@ Note these are native Cobblemon datapack spawns, independent of the mod's
 ### Environmental rules
 Both the random spawns and the outbreaks respect environmental sanity checks
 (config section `environment`), so Pokémon don't appear where they shouldn't:
-- **Disabled dimensions** (`disabledDimensions`, default `minecraft:the_end`):
-  no dynamic randomness there — the End keeps its vanilla Pokémon
+- **Allowed dimensions** (`allowedDimensions`, default `minecraft:overworld` +
+  `minecraft:the_nether`): an allow-list, so dynamic spawns only happen in the
+  real world. Modded instanced dimensions (raid dens, distortion worlds, etc.)
+  and the End are excluded automatically without having to list each one — they
+  keep their own Pokémon untouched
 - **Banned types per dimension** (`dimensionBannedTypes`, default: no Grass/
   Water/Ice/Bug in the Nether): species with a banned type are filtered out for
   that dimension
@@ -212,7 +215,7 @@ This minimizes breakage across future updates. The declared dependency accepts
 - [Fabric API](https://modrinth.com/mod/fabric-api) (required)
 - [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) (required)
 
-## Known limitations (v1.1.0)
+## Known limitations (v1.1.1)
 
 - Chat messages are translated client-side (English and Brazilian Portuguese
   included); players joining without the mod on their client will see raw

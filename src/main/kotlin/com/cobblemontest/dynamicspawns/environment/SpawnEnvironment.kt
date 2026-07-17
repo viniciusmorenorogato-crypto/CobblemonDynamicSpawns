@@ -17,9 +17,14 @@ object SpawnEnvironment {
     private fun dimensionId(world: ServerLevel): String =
         world.dimension().location().toString()
 
-    /** Os spawns dinâmicos estão habilitados nesta dimensão? (ex: falso no The End) */
+    /**
+     * Os spawns dinâmicos estão habilitados nesta dimensão? Usa lista branca: só as
+     * dimensões de "mundo real" (Overworld/Nether por padrão). Assim dimensões
+     * instanciadas de mods (raid dens, distortion world, etc.) ficam de fora
+     * automaticamente, sem precisar listar cada uma.
+     */
     fun dynamicSpawnsAllowed(world: ServerLevel): Boolean =
-        dimensionId(world) !in DynamicSpawns.config.environment.disabledDimensions
+        dimensionId(world) in DynamicSpawns.config.environment.allowedDimensions
 
     /** Nenhum dos tipos da espécie está na lista de proibidos da dimensão atual? */
     fun isTypeAllowed(species: Species, world: ServerLevel): Boolean {
